@@ -1,0 +1,30 @@
+.slider-product-item .image img {
+  width: 100%;
+}
+
+.slider-product-item .detail {
+  position: relative;
+  background-color: var(--orange);
+  color: #fff;
+}
+
+.slider-product-item .detail .title {
+  font-size: 15px;
+}
+
+.slider-product-item .detail .subscriber-icons i {
+  color: #fff;
+}
+
+.slider-product-item .detail .subscriber-icons i.active {
+  color: #000;
+}
+
+.slider-product-item .more {
+  display: block;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 30px;
+}

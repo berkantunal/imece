@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin-ext');
+
+:root {
+  --orange: #ec4c1d;
+  --gray: #f6f6f6;
+  --dark-gray: #333333;
+  --default-color: #262626;
+  --default-font-size: 17px;
+  --default-font-family: 'Open Sans', arial;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--default-color);
+  font-size: var(--default-font-size);
+  font-family: var(--default-font-family);
+}
+
+a {
+  color: #fff;
+}
+
+a:hover {
+  color: var(--default-color);
+}
+
+.white {
+  color: #fff;
+}
+
+.orange-bg {
+  background-color: var(--orange);
+}
+
+.gray-bg {
+  background-color: var(--gray);
+}
+
+.dark-gray-bg {
+  background-color: var(--dark-gray);
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.regular {
+  font-weight: 500;
+}
+
+.thin {
+  font-weight: 300;
+}

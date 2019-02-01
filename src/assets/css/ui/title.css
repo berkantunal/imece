@@ -1,0 +1,51 @@
+.underline span {
+  display: inline-block;
+}
+
+.underline span:after {
+  content: "";
+  display: block;
+  height: 5px;
+  margin-top: 5px;
+  background: currentColor;
+}
+
+.gray-top-border {
+  position: relative;
+}
+
+.gray-top-border:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 200px;
+  background: #f1f1f1;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.dashed span {
+  display: inline-block;
+  position: relative;
+}
+
+.dashed span:before ,
+.dashed span:after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 1px;
+  top: 50%;
+  background: #fff;
+  position: absolute;
+}
+
+.dashed span:before {
+  left: -120px;
+}
+
+.dashed span:after {
+  right: -120px;
+}

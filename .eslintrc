@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+        "jsx": true,
+        "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "max-len": ["error", { "code": 120 }],
+    "sort-keys": ["error", "asc", { "caseSensitive": true, "natural": true }],
+    "no-console": 2,
+    "class-methods-use-this": 0,
+    "no-multiple-empty-lines": ["error", { "max": 1 }],
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "import/prefer-default-export": 0,
+    "import/no-cycle": 0,
+    "arrow-body-style": 0,
+    "react/require-default-props": 0,
+    "react/jsx-filename-extension": 0,
+    "react/forbid-prop-types": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/label-has-for": [
+      2,
+      {
+        "required": {
+          "every": "id"
+        }
+      }
+    ],
+    "jsx-a11y/click-events-have-key-events": 0
+  }
+}

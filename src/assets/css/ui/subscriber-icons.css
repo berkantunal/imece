@@ -1,0 +1,9 @@
+.subscriber-icons i {
+  color: #dcdadb;
+  font-size: 16px;
+  margin: 0 1px;
+}
+
+.subscriber-icons i.active {
+  color: var(--orange);
+}

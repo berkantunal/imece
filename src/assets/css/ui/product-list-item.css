@@ -1,0 +1,106 @@
+.list-item {
+  background-color: #fff;
+  transition: 300ms;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.list-item:hover {
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.list-item .owner ,
+.list-item .title {
+  font-size: 1.2em;
+  line-height: 1.2;
+  font-weight: 600;
+  text-align: center;
+}
+
+.list-item .image {
+  position: relative;
+}
+
+.list-item .image:after {
+  content: "";
+  display: block;
+  background-color: var(--orange);
+  width: 30%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+}
+
+.list-item .image img {
+  width: 100%;
+  display: block;
+}
+
+.list-item .detail {
+  width: 100%;
+  display: block;
+}
+
+.list-item .detail > div {
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.list-item .detail .location ,
+.list-item .detail .price ,
+.list-item .detail .comments {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted var(--default-color);
+}
+
+.list-item .detail .location i ,
+.list-item .detail .price i ,
+.list-item .detail .comments i {
+  color: var(--orange);
+  width: 25px;
+  font-size: 14px;
+}
+
+.list-item .detail .price .line-through {
+  text-decoration: line-through;
+}
+
+.list-item .detail .price .discounted-price {
+  color: var(--orange);
+}
+
+.list-item .detail .price .discounted-price big {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 0 5px;
+}
+
+.list-item .detail .subscribers p {
+  line-height: 1.2;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.list-item .detail .subscribers p strong ,
+.list-item .detail .subscribers p big {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.list-item .detail .subscribers p big {
+  color: var(--orange);
+}
+
+.list-item .detail .more {
+  width: 100%;
+  border: 1px solid;
+  padding: 4px 0;
+  font-size: 14px;
+  transition: 300ms;
+}
+
+.list-item:hover .detail .more {
+  color: #fff;
+  background-color: var(--default-color);
+}

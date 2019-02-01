@@ -1,0 +1,26 @@
+.list-toolbar {
+  background-color: var(--default-color);
+  color: #fff;
+}
+
+.list-toolbar .form-control {
+  height: 60px;
+  background-color: transparent;
+  color: #fff;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+.list-toolbar .form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: transparent;
+}
+
+.list-toolbar .btn {
+  color: #fff;
+}
+
+.list-toolbar .btn:hover {
+  color: var(--orange);
+}

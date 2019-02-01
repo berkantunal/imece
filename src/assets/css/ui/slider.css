@@ -1,0 +1,89 @@
+.slider-item {
+  display: block !important;
+}
+
+.slick-prev ,
+.slick-next {
+  z-index: 9;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev {
+  left: 25px;
+}
+
+.slick-next {
+  right: 25px;
+}
+
+.slick-prev:before ,
+.slick-next:before {
+  color: #dddbdc;
+}
+
+.slick-prev:before ,
+.slick-next:before {
+  content: "";
+  display: block;
+  color: #dddbdc;
+  border-top: 4px solid currentColor;
+  border-left: 4px solid currentColor;
+  width: 30px;
+  height: 30px;
+  transform: rotate(-45deg);
+  transition: 300ms;
+}
+
+.slick-next:before {
+  transform: rotate(135deg);
+}
+
+.slick-prev:hover:before ,
+.slick-next:hover:before {
+  color: #aaaaaa;
+}
+
+.slick-dots {
+}
+
+.slick-dots li {
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+.slick-dots li.slick-active {
+  top: -3px;
+  margin: 0 5px;
+}
+
+.slick-dots li button {
+  padding: 5px;
+  width: auto;
+  height: auto;
+}
+
+.slick-dots li.slick-active button {
+  padding: 0;
+}
+
+.slick-dots li button:before {
+  display: none;
+}
+
+.slick-dots li button:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background: #f1f1f1;
+}
+
+.slick-dots li.slick-active button:after {
+  background: transparent;
+  border: 1px solid #f1f1f1;
+  width: 11px;
+  height: 11px;
+}
