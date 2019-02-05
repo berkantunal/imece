@@ -9,6 +9,10 @@
   --default-font-family: 'Open Sans', arial;
 }
 
+* {
+  outline: 0 !important;
+}
+
 body {
   margin: 0;
   padding: 0;

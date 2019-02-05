@@ -1,10 +1,10 @@
 import Header from '$/components/common/header';
 import Footer from '$/components/common/footer';
 import CategorySlider from './home/category-slider';
-import ProductSlider from './home/product-slider';
+import ProductSlider from '$/components/common/product-slider';
 import List from './home/list';
 import Slider from './home/slider';
-import Social from './home/social';
+import Social from '$/components/common/social';
 import React from 'react';
 
 import '$/assets/css/home.css';
@@ -20,7 +20,7 @@ const Home = () => (
       </div>
     </div>
     <div className="container">
-      <ProductSlider />
+      <ProductSlider title="YENİ BAŞLAYAN İMECELER" />
     </div>
     <div className="orange-bg">
       <div className="container">

@@ -1,4 +1,5 @@
 import Button from './button';
+import Breadcrumbs from './breadcrumbs';
 import Link from './link';
 import Slider from './slider';
 import SliderProductItem from './slider-product-item';
@@ -15,6 +16,7 @@ import FooterList from './footer-list';
 
 export {
   Button,
+  Breadcrumbs,
   Link,
   Slider,
   SliderProductItem,

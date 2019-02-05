@@ -1,0 +1,19 @@
+.breadcrumbs ul {
+  display: flex;
+  color: #000;
+}
+
+.breadcrumbs ul li {
+  padding-right: 25px;
+}
+
+.breadcrumbs ul li a {
+  color: var(--orange);
+}
+
+.breadcrumbs ul li a:before {
+  content: ">";
+  color: #000;
+  font-weight: bold;
+  margin-right: 5px;
+}

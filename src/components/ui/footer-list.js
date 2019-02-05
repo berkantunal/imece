@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import { Link, Title } from '.';
 
 const FooterList = props => {
@@ -10,8 +11,8 @@ const FooterList = props => {
         {title}
       </Title>
       <ul className="list-unstyled">
-        {links.map(({ to, title: linkTitle }) => (
-          <li>
+        {_.map(links, ({ to, title: linkTitle }, key) => (
+          <li key={key}>
             <Link to={to}>{linkTitle}</Link>
           </li>
         ))}

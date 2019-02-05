@@ -1,0 +1,76 @@
+.product-header {
+  border-bottom: 1px solid #000;
+}
+
+.product-content .btn-cart ,
+.product-header .btn {
+  white-space: nowrap;
+}
+
+.product-content .product-images img {
+  width: 100%;
+}
+
+.product-content .product-images .image .btn-lightbox i {
+  color: var(--orange);
+}
+
+.product-content .product-images .thumbnails .btn-thumbnail {
+  padding: 0;
+  border-radius: 0;
+  transition: 300ms;
+}
+
+.product-content .product-images .thumbnails .btn-thumbnail.active {
+  border-color: #000;
+}
+
+.product-content .price {
+  font-size: 1.4em;
+}
+
+.product-content .price big {
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.product-content .subscriber-icons i {
+  font-size: 36px;
+  margin: 0 4px 0 0;
+}
+
+.product-content .btn-cart {
+  background: var(--orange);
+  border-radius: 0;
+  box-shadow: 1px 1px 1px 0px black;
+  text-shadow: 1px 1px 1px black;
+  color: white;
+  font-weight: 600;
+}
+
+.product-content .user-subscribtion-info {
+  font-size: .8em;
+}
+
+.product-content .detail-list li {
+  padding: 1rem 0;
+  border-top: 2px dotted #000;
+}
+
+.product-content .detail-list li .title ,
+.product-content .detail-list li .value {
+  font-size: .9em;
+}
+
+.product-content .detail-list li .title {
+  font-weight: 700;
+  width: 35%;
+}
+
+.product-detail-context {
+  border: 10px solid #ddd;
+}
+
+.product-detail-context h3 {
+  border-bottom: 1px solid #000;
+}
