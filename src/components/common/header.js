@@ -2,14 +2,12 @@ import React from 'react';
 import logo from '$/assets/img/react.svg';
 import { Link } from '$/components/ui/';
 import Navigation from './navigation';
-import Login from './login';
 
 import '$/assets/css/header.css';
 
 const Header = () => {
   return (
     <header>
-      <Login />
       <div className="orange-bg">
         <div className="container">
           <div className="row justify-content-between">

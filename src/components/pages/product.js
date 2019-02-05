@@ -47,7 +47,7 @@ class Product extends Component {
                 <div className="w-100">
                   <Breadcrumbs
                     links={[
-                      { title: 'Anasayfa', to: 'home' },
+                      { title: 'Anasayfa', to: '/' },
                       { title: product.title, to: 'product' }
                     ]}
                   />

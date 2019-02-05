@@ -1,10 +1,10 @@
-export const SET_MODAL_VISIBILITY = 'SET_MODAL_VISIBILITY';
+export const SET_LOGIN_MODAL_VISIBILITY = 'SET_LOGIN_MODAL_VISIBILITY';
 
-export function setModalVisibility(value) {
+export function setLoginModalVisibility(value) {
   return dispatch => {
     dispatch({
       payload: value,
-      type: SET_MODAL_VISIBILITY
+      type: SET_LOGIN_MODAL_VISIBILITY
     });
   };
 }

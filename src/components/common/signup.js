@@ -7,60 +7,61 @@ import { setSignupModalVisibility } from '$/store/actions/signup';
 
 import '$/assets/css/header.css';
 
-class UILogin extends React.Component {
+class UISignup extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleModalClose = this.handleModalClose.bind(this);
-    this.handleShowSignup = this.handleShowSignup.bind(this);
+    this.handleShowLogin = this.handleShowLogin.bind(this);
   }
 
   handleModalClose() {
-    this.props.setLoginModalVisibility(false);
+    this.props.setSignupModalVisibility(false);
   }
 
-  handleShowSignup() {
+  handleShowLogin() {
     this.handleModalClose();
-    this.props.setSignupModalVisibility(true);
+    this.props.setLoginModalVisibility(true);
   }
 
   render() {
     const footerButtons = (
       <div className="d-flex w-100">
-        <Button extraClassName="btn-orange">Giriş Yap</Button>
-        <Button onClick={this.handleShowSignup} extraClassName="btn-dark">
-          Kayıt Ol
+        <Button extraClassName="btn-dark">Kayıt Ol</Button>
+        <Button onClick={this.handleShowLogin} extraClassName="btn-orange">
+          Giriş Yap
         </Button>
       </div>
     );
 
-    const { login } = this.props;
+    const { signup } = this.props;
 
     return (
       <Modal
-        show={login.modalVisibility}
+        show={signup.modalVisibility}
         handleClose={this.handleModalClose}
-        title="Kullanıcı Girişi"
+        title="Kayıt Ol"
         footer={footerButtons}
       >
         <form>
           <Input title="E-mail Adresi" />
           <Input title="Şifre" />
+          <Input title="Şifre Tekrar" />
         </form>
       </Modal>
     );
   }
 }
 
-UILogin.propTypes = {
-  login: PropTypes.object,
+UISignup.propTypes = {
   setLoginModalVisibility: PropTypes.func,
-  setSignupModalVisibility: PropTypes.func
+  setSignupModalVisibility: PropTypes.func,
+  signup: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    login: state.login
+    signup: state.signup
   };
 };
 
@@ -72,4 +73,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UILogin);
+)(UISignup);

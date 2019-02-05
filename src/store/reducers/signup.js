@@ -1,13 +1,12 @@
-import { SET_LOGIN_MODAL_VISIBILITY } from '../actions/login';
+import { SET_SIGNUP_MODAL_VISIBILITY } from '../actions/signup';
 
 const initialState = {
-  isLoggedIn: true,
   modalVisibility: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_LOGIN_MODAL_VISIBILITY:
+    case SET_SIGNUP_MODAL_VISIBILITY:
       return {
         ...state,
         modalVisibility: action.payload

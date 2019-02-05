@@ -45,7 +45,7 @@ const ListItem = props => {
               sadece <big>{data.requiredUserCount - data.subscriberCount} Kişi</big> Kaldı!
             </p>
           </div>
-          <Link className="btn more" to="/">
+          <Link className="btn more" to="/product">
             AYRINTILARA BAKIN
           </Link>
         </div>
