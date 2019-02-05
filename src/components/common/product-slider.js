@@ -17,7 +17,7 @@ const ProductSlider = props => {
           infinite: true,
           slidesToScroll: 1,
           slidesToShow: 3,
-          speed: 500,
+          speed: 500
         }}
       >
         <div className="product-slider-item d-flex flex-column">
@@ -41,7 +41,7 @@ const ProductSlider = props => {
 };
 
 ProductSlider.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default ProductSlider;

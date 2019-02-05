@@ -22,13 +22,13 @@ const FooterList = props => {
 };
 
 FooterList.defaultProps = {
-  className: 'footer-list',
+  className: 'footer-list'
 };
 
 FooterList.propTypes = {
   className: PropTypes.string,
   links: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default FooterList;

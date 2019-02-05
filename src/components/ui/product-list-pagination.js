@@ -41,12 +41,12 @@ const ListPagination = props => {
 };
 
 ListPagination.defaultProps = {
-  className: 'list-pagination d-flex justify-content-center',
+  className: 'list-pagination d-flex justify-content-center'
 };
 
 ListPagination.propTypes = {
   className: PropTypes.string,
-  extraClassName: PropTypes.string,
+  extraClassName: PropTypes.string
 };
 
 export default ListPagination;

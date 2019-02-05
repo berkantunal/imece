@@ -18,7 +18,7 @@ const UISlider = props => {
 
 UISlider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  settings: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired
 };
 
 export default UISlider;

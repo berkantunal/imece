@@ -22,12 +22,12 @@ const Breadcrumbs = props => {
 
 Breadcrumbs.defaultProps = {
   className: 'breadcrumbs',
-  links: [],
+  links: []
 };
 
 Breadcrumbs.propTypes = {
   className: PropTypes.string,
-  links: PropTypes.array,
+  links: PropTypes.array
 };
 
 export default Breadcrumbs;

@@ -33,14 +33,14 @@ ListToolbar.defaultProps = {
   className: 'list-toolbar pr-2',
   options: {
     timestampHigh: 'Yeni eklenen imceler',
-    timestampLow: 'Sona yakın imeceler',
-  },
+    timestampLow: 'Sona yakın imeceler'
+  }
 };
 
 ListToolbar.propTypes = {
   className: PropTypes.string,
   extraClassName: PropTypes.string,
-  options: PropTypes.oneOfType(PropTypes.array, PropTypes.object),
+  options: PropTypes.oneOfType(PropTypes.array, PropTypes.object)
 };
 
 export default ListToolbar;

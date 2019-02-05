@@ -17,13 +17,13 @@ const SubscriberIcons = props => {
 };
 
 SubscriberIcons.defaultProps = {
-  iconClassName: 'fa fa-user',
+  iconClassName: 'fa fa-user'
 };
 
 SubscriberIcons.propTypes = {
   iconClassName: PropTypes.string,
   requiredUserCount: PropTypes.number.isRequired,
-  subscriberCount: PropTypes.number.isRequired,
+  subscriberCount: PropTypes.number.isRequired
 };
 
 export default SubscriberIcons;

@@ -19,7 +19,7 @@ const Input = props => {
 
 Input.defaultProps = {
   className: 'form-group',
-  type: 'text',
+  type: 'text'
 };
 
 Input.propTypes = {
@@ -27,7 +27,7 @@ Input.propTypes = {
   extraClassName: PropTypes.string,
   placeholder: PropTypes.string,
   title: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.string
 };
 
 export default Input;

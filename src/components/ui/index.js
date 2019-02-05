@@ -1,6 +1,7 @@
 import Button from './button';
 import Breadcrumbs from './breadcrumbs';
 import Link from './link';
+import Modal from './modal';
 import Slider from './slider';
 import SliderProductItem from './slider-product-item';
 import Search from './search';
@@ -18,6 +19,7 @@ export {
   Button,
   Breadcrumbs,
   Link,
+  Modal,
   Slider,
   SliderProductItem,
   Search,
@@ -29,5 +31,5 @@ export {
   ProductListItem,
   SubscriberIcons,
   ProductListPagination,
-  FooterList,
+  FooterList
 };

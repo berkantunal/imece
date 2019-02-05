@@ -63,14 +63,14 @@ ListItem.defaultProps = {
     price: 40000,
     requiredUserCount: 8,
     subscriberCount: 4,
-    title: 'COROLLA 2019',
-  },
+    title: 'COROLLA 2019'
+  }
 };
 
 ListItem.propTypes = {
   className: PropTypes.string,
   data: PropTypes.object,
-  extraClassName: PropTypes.string,
+  extraClassName: PropTypes.string
 };
 
 export default ListItem;

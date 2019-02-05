@@ -11,7 +11,7 @@ const Select = props => {
     inputExtraClassName,
     placeholder,
     title,
-    options,
+    options
   } = props;
   return (
     <div className={cls(className, extraClassName)}>
@@ -31,7 +31,7 @@ const Select = props => {
 Select.defaultProps = {
   className: 'form-group',
   inputClassName: 'form-control',
-  options: [],
+  options: []
 };
 
 Select.propTypes = {
@@ -41,7 +41,7 @@ Select.propTypes = {
   inputExtraClassName: PropTypes.string,
   options: PropTypes.oneOfType(PropTypes.array, PropTypes.object),
   placeholder: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Select;

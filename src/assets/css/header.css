@@ -5,22 +5,3 @@
 .logo img {
   height: 50px;
 }
-
-.navigation .nav-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid #fff;
-}
-
-.navigation .nav-item:last-child {
-  border-right: 0px;
-}
-
-.navigation .nav-item i.fa {
-  margin-right: 10px;
-}
-
-.navigation .nav-item .nav-link {
-  line-height: 50px;
-}

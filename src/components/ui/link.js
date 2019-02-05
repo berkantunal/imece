@@ -12,13 +12,13 @@ const UILink = props => {
 };
 
 UILink.defaultProps = {
-  className: '',
+  className: ''
 };
 
 UILink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   className: PropTypes.string,
-  to: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired
 };
 
 export default UILink;

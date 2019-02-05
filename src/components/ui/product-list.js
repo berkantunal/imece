@@ -24,12 +24,12 @@ const List = props => {
 };
 
 List.defaultProps = {
-  className: 'list-content',
+  className: 'list-content'
 };
 
 List.propTypes = {
   className: PropTypes.string,
-  extraClassName: PropTypes.string,
+  extraClassName: PropTypes.string
 };
 
 export default List;

@@ -14,7 +14,7 @@ class Images extends Component {
 
     this.state = {
       currentImage: firstImage,
-      isLightboxOpen: false,
+      isLightboxOpen: false
     };
   }
 
@@ -24,7 +24,7 @@ class Images extends Component {
 
     this.setState({
       ...state,
-      currentImage: images[index],
+      currentImage: images[index]
     });
   }
 
@@ -33,7 +33,7 @@ class Images extends Component {
 
     this.setState({
       ...state,
-      isLightboxOpen: lightboxState,
+      isLightboxOpen: lightboxState
     });
   }
 
@@ -80,7 +80,7 @@ class Images extends Component {
 }
 
 Images.propTypes = {
-  images: PropTypes.array,
+  images: PropTypes.array
 };
 
 export default Images;

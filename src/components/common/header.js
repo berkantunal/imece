@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from '$/assets/img/react.svg';
 import { Link } from '$/components/ui/';
+import Navigation from './navigation';
+import Login from './login';
 
 import '$/assets/css/header.css';
 
 const Header = () => {
   return (
     <header>
+      <Login />
       <div className="orange-bg">
         <div className="container">
           <div className="row justify-content-between">
@@ -17,25 +20,7 @@ const Header = () => {
               </Link>
             </div>
             <div className="col-6">
-              <nav className="navigation h-100 d-flex justify-content-end align-items-stretch">
-                <div className="nav-item">
-                  <Link className="nav-link" to="/">
-                    <i className="fa fa-home" />
-                  </Link>
-                </div>
-                <div className="nav-item">
-                  <Link className="nav-link" to="/">
-                    <i className="fa fa-pencil" />
-                    Kayıt Ol
-                  </Link>
-                </div>
-                <div className="nav-item">
-                  <Link className="nav-link" to="/">
-                    <i className="fa fa-user" />
-                    Giriş
-                  </Link>
-                </div>
-              </nav>
+              <Navigation />
             </div>
           </div>
         </div>

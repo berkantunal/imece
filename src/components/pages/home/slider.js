@@ -10,7 +10,7 @@ const HomeSlider = () => (
         infinite: true,
         slidesToScroll: 1,
         slidesToShow: 1,
-        speed: 500,
+        speed: 500
       }}
     >
       <div className="slider-item">

@@ -56,3 +56,23 @@ a:hover {
 .thin {
   font-weight: 300;
 }
+
+.form-control ,
+.btn {
+  border-radius: 0;
+}
+
+.btn-dark {
+  background-color: #000;
+}
+
+.btn-orange {
+  background-color: var(--orange);
+  color: #fff;
+}
+
+.btn-orange:active ,
+.btn-orange:hover {
+  background-color: var(--orange);
+  color: #fff;
+}

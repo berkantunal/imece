@@ -13,14 +13,14 @@ const UIButton = props => {
 
 UIButton.defaultProps = {
   className: 'btn',
-  extraClassName: 'btn-primary',
+  extraClassName: 'btn-primary'
 };
 
 UIButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   className: PropTypes.string,
   extraClassName: PropTypes.string,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default UIButton;

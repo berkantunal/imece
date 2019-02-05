@@ -15,14 +15,14 @@ const PRODUCT = {
   images: [
     'https://via.placeholder.com/450x350.png?text=450x350%201',
     'https://via.placeholder.com/450x350.png?text=450x350%202',
-    'https://via.placeholder.com/450x350.png?text=450x350%203',
+    'https://via.placeholder.com/450x350.png?text=450x350%203'
   ],
   location: 'Ankara',
   owner: 'TOYOTA PLAZA',
   price: 40000,
   requiredUserCount: 8,
   subscriberCount: 4,
-  title: 'COROLLA 2019',
+  title: 'COROLLA 2019'
 };
 
 class Product extends Component {
@@ -48,7 +48,7 @@ class Product extends Component {
                   <Breadcrumbs
                     links={[
                       { title: 'Anasayfa', to: 'home' },
-                      { title: product.title, to: 'product' },
+                      { title: product.title, to: 'product' }
                     ]}
                   />
                 </div>

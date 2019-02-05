@@ -6,39 +6,39 @@ import '$/assets/css/footer.css';
 const footerLinks1 = [
   {
     title: 'Güvenli İmecenin İpuçları',
-    to: '/guvenli-imecenin-ipuclari',
+    to: '/guvenli-imecenin-ipuclari'
   },
   {
     title: 'Kullanım Koşulları',
-    to: '/kullanim-kosullari',
+    to: '/kullanim-kosullari'
   },
   {
     title: 'Üyelik Sözleşmesi',
-    to: '/uyelik-sozlesmesi',
+    to: '/uyelik-sozlesmesi'
   },
   {
     title: 'Yardım',
-    to: '/yardim',
-  },
+    to: '/yardim'
+  }
 ];
 
 const footerLinks2 = [
   {
     title: 'Reklam',
-    to: '/reklam',
+    to: '/reklam'
   },
   {
     title: 'Doping',
-    to: '/doping',
+    to: '/doping'
   },
   {
     title: 'Mobil',
-    to: '/mobil',
+    to: '/mobil'
   },
   {
     title: 'Ödeme Seçenekleri',
-    to: '/odeme-secenekleri',
-  },
+    to: '/odeme-secenekleri'
+  }
 ];
 
 const Footer = () => {

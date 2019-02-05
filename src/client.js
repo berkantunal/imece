@@ -1,16 +1,31 @@
 import App from '$/pages/app';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
 import React from 'react';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
+import configureStore from '$/store/';
 import { hydrate } from 'react-dom';
+import { Provider } from 'react-redux';
+
+// eslint-disable-next-line  no-underscore-dangle
+const store = configureStore(window.__PRELOADED_STATE__);
 
 hydrate(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  // eslint-disable-next-line prettier/prettier
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./pages/app', () => {
+    hydrate(
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>,
+      document.getElementById('root')
+    );
+  });
 }
