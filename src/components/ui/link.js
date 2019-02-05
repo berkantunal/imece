@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 
 const UILink = props => {
   const { className, children, to } = props;
@@ -21,4 +21,4 @@ UILink.propTypes = {
   to: PropTypes.string.isRequired
 };
 
-export default UILink;
+export default withRouter(UILink);

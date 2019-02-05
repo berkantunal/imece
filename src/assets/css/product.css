@@ -1,9 +1,4 @@
-.product-header {
-  border-bottom: 1px solid #000;
-}
-
-.product-content .btn-cart ,
-.product-header .btn {
+.product-content .btn-cart {
   white-space: nowrap;
 }
 

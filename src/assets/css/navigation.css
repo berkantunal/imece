@@ -76,6 +76,12 @@
   transition: 300ms;
 }
 
+.user-card-navigation .dropdown-menu .dropdown-item:active ,
+.user-card-navigation .dropdown-menu .dropdown-item:focus {
+  background: transparent;
+}
+
+.user-card-navigation .dropdown-menu .dropdown-item.active ,
 .user-card-navigation .dropdown-menu .dropdown-item:hover {
   background: var(--orange);
 }

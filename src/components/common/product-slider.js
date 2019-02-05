@@ -21,19 +21,19 @@ const ProductSlider = props => {
         }}
       >
         <div className="product-slider-item d-flex flex-column">
-          <SliderProductItem extraClassName="mx-4" />
+          <SliderProductItem extraClassName="m-4" />
         </div>
         <div className="category-slider-item d-flex flex-column">
-          <SliderProductItem extraClassName="mx-4" />
+          <SliderProductItem extraClassName="m-4" />
         </div>
         <div className="category-slider-item d-flex flex-column">
-          <SliderProductItem extraClassName="mx-4" />
+          <SliderProductItem extraClassName="m-4" />
         </div>
         <div className="category-slider-item d-flex flex-column">
-          <SliderProductItem extraClassName="mx-4" />
+          <SliderProductItem extraClassName="m-4" />
         </div>
         <div className="category-slider-item d-flex flex-column">
-          <SliderProductItem extraClassName="mx-4" />
+          <SliderProductItem extraClassName="m-4" />
         </div>
       </Slider>
     </div>

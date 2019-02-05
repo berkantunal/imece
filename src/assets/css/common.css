@@ -76,3 +76,12 @@ a:hover {
   background-color: var(--orange);
   color: #fff;
 }
+
+.page-header {
+  border-bottom: 1px solid #000;
+}
+
+.page-content .btn-cart ,
+.page-header .btn {
+  white-space: nowrap;
+}

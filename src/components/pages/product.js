@@ -39,7 +39,7 @@ class Product extends Component {
         <Header />
         <div className="gray-bg">
           <div className="container">
-            <div className="product-header pb-2 mb-3">
+            <div className="page-header pb-2 mb-3">
               <Title extraClassName="pt-3 bold" type="h2">
                 {product.title}
               </Title>
