@@ -27,10 +27,7 @@ class UILogin extends React.Component {
   render() {
     const footerButtons = (
       <div className="d-flex w-100">
-        <Button extraClassName="btn-orange">Giriş Yap</Button>
-        <Button onClick={this.handleShowSignup} extraClassName="btn-dark">
-          Kayıt Ol
-        </Button>
+        <Button extraClassName="btn-orange btn-lg">Giriş Yap</Button>
       </div>
     );
 
@@ -46,6 +43,12 @@ class UILogin extends React.Component {
         <form>
           <Input title="E-mail Adresi" />
           <Input title="Şifre" />
+          <p className="mb-0">
+            Hesabın yok mu ?{' '}
+            <a className="link underline" onClick={this.handleShowSignup}>
+              Kayıt ol.
+            </a>
+          </p>
         </form>
       </Modal>
     );

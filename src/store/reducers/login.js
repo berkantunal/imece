@@ -1,7 +1,7 @@
 import { SET_LOGIN_MODAL_VISIBILITY } from '../actions/login';
 
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   modalVisibility: false
 };
 

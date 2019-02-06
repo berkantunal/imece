@@ -18,8 +18,8 @@ const Select = props => {
       {title && <label htmlFor="exampleInputEmail1">{title}</label>}
       <select className={cls(inputClassName, inputExtraClassName)} id="exampleFormControlSelect1">
         {placeholder && <option>{placeholder}</option>}
-        {_.map(options, (optionTitle, optionValue) => (
-          <option key={optionValue} value={optionValue}>
+        {_.map(options, ({ title: optionTitle, value }, key) => (
+          <option key={key} value={value}>
             {optionTitle}
           </option>
         ))}

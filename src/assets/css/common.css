@@ -29,6 +29,14 @@ a:hover {
   color: var(--default-color);
 }
 
+a.link {
+  cursor: pointer;
+}
+
+a.underline {
+  text-decoration: underline !important;
+}
+
 .white {
   color: #fff;
 }

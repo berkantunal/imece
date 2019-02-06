@@ -26,7 +26,7 @@
 
 .navigation .nav-item .nav-link.btn-nav-link:active ,
 .navigation .nav-item .nav-link.btn-nav-link:hover {
-  color: #000;
+  color: var(--dark-gray);
 }
 
 .user-card-navigation .btn.dropdown-toggle {
@@ -39,7 +39,7 @@
 
 .user-card-navigation .btn.dropdown-toggle img {
   border-radius: 100%;
-  border: 2px solid #000;
+  border: 2px solid var(--dark-gray);
   display: block;
   transition: 300ms;
 }
@@ -51,7 +51,7 @@
 .user-card-navigation .show > .btn.dropdown-toggle:focus ,
 .user-card-navigation .show > .btn.dropdown-toggle ,
 .user-card-navigation .btn.dropdown-toggle:hover {
-  background: #000;
+  background: var(--dark-gray);
   color: #fff;
 }
 
@@ -66,7 +66,7 @@
   width: 100%;
   border-radius: 0;
   border: 0;
-  background: #000;
+  background: var(--dark-gray);
   padding-top: 0;
 }
 
