@@ -11,7 +11,7 @@ const HomeList = () => (
         İmece sepetinde toplam 169 adet kayıt bulundu.
       </Title>
     </div>
-    <ProductList />
+    <ProductList toolbar />
   </div>
 );
 
