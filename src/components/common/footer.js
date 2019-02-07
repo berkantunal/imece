@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="copyright py-3 white">Copyright &copy; 2015 imecesepeti.com</div>
+      <div className="copyright py-3 white">Copyright &copy; 2015 maxcepte.com</div>
     </footer>
   );
 };

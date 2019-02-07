@@ -10,13 +10,21 @@ const Select = props => {
     inputClassName,
     inputExtraClassName,
     placeholder,
+    onChange,
+    name,
     title,
     options
   } = props;
   return (
     <div className={cls(className, extraClassName)}>
-      {title && <label htmlFor="exampleInputEmail1">{title}</label>}
-      <select className={cls(inputClassName, inputExtraClassName)} id="exampleFormControlSelect1">
+      {title && <label htmlFor={name}>{title}</label>}
+      <select
+        className={cls(inputClassName, inputExtraClassName)}
+        id={name}
+        name={name}
+        onChange={onChange}
+      >
+        <option value="">Seçiniz</option>
         {placeholder && <option>{placeholder}</option>}
         {_.map(options, ({ title: optionTitle, value }, key) => (
           <option key={key} value={value}>
@@ -39,6 +47,8 @@ Select.propTypes = {
   extraClassName: PropTypes.string,
   inputClassName: PropTypes.string,
   inputExtraClassName: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
   options: PropTypes.oneOfType(PropTypes.array, PropTypes.object),
   placeholder: PropTypes.string,
   title: PropTypes.string

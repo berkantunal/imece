@@ -5,13 +5,12 @@ import { Link, Button } from '$/components/ui/';
 import { Dropdown } from 'react-bootstrap';
 import Login from './login';
 import Signup from './signup';
-import { setLoginModalVisibility } from '$/store/actions/login';
-import { setSignupModalVisibility } from '$/store/actions/signup';
+import { setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
 
 import '$/assets/css/navigation.css';
 
 const Navigation = props => {
-  const { isLoggedIn } = props.login;
+  const { isLoggedIn } = props.user;
 
   let userNavigation;
   if (isLoggedIn) {
@@ -43,8 +42,6 @@ const Navigation = props => {
   } else {
     userNavigation = (
       <div className="user-navigation d-flex">
-        <Login />
-        <Signup />
         <div className="nav-item">
           <Button
             className="nav-link"
@@ -80,20 +77,22 @@ const Navigation = props => {
           <i className="fa fa-home" />
         </Link>
       </div>
+      <Login />
+      <Signup />
       {userNavigation}
     </nav>
   );
 };
 
 Navigation.propTypes = {
-  login: PropTypes.object,
   setLoginModalVisibility: PropTypes.func,
-  setSignupModalVisibility: PropTypes.func
+  setSignupModalVisibility: PropTypes.func,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
-    login: state.login
+    user: state.user
   };
 };
 

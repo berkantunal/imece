@@ -6,14 +6,13 @@ import Home from './home';
 import Product from './product';
 import User from './user';
 
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '$/assets/css/common.css';
 
 const App = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/product" component={Product} />
+    <Route exact path="/user" component={User} />
     <Route path="/user/:module" component={User} />
   </Switch>
 );

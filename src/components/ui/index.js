@@ -1,3 +1,4 @@
+import Alert from './alert';
 import Button from './button';
 import Breadcrumbs from './breadcrumbs';
 import Link from './link';
@@ -16,6 +17,7 @@ import ProductListPagination from './product-list-pagination';
 import FooterList from './footer-list';
 
 export {
+  Alert,
   Button,
   Breadcrumbs,
   Link,

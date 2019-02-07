@@ -1,3 +1,8 @@
+:global {
+  @import '~@fortawesome/fontawesome-free/css/all.min.css';
+  @import '~bootstrap/dist/css/bootstrap.min.css';
+}
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin-ext');
 
 :root {

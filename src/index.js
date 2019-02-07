@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import http from 'http';
 
 let app = require('./server').default;
