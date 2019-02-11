@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Alert, Input, Select, Button, Modal } from '$/components/ui/';
 import { getCities } from '$/store/actions/city';
 import { signup, setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
-import { optionList } from '$/helpers';
 
 import '$/assets/css/header.css';
 
@@ -30,9 +29,7 @@ class UISignup extends React.Component {
 
   handleChange = event => {
     const { form } = this.state;
-    const {
-      target: { value, name }
-    } = event;
+    const { value, name } = event.target;
 
     form[name] = value;
     if (!value) {
@@ -160,7 +157,7 @@ class UISignup extends React.Component {
             name="city"
             value={form.city}
             onChange={this.handleChange}
-            options={optionList(city.list, 'name', 'name')}
+            options={city.optionList}
           />
           {showError && !form.city && <Alert>Lütfen şehir seçiniz.</Alert>}
           <p className="mb-0">

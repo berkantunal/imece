@@ -9,11 +9,7 @@ export function getCities() {
     dispatch({
       payload: axios()
         .get(`city`)
-        .then(res => {
-          // eslint-disable-next-line
-          console.log(res);
-          return res.data;
-        }),
+        .then(res => res.data),
       type: 'SET_CITIES'
     });
   };

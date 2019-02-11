@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
@@ -15,6 +17,7 @@ const Select = props => {
     title,
     options
   } = props;
+
   return (
     <div className={cls(className, extraClassName)}>
       {title && <label htmlFor={name}>{title}</label>}
@@ -24,8 +27,7 @@ const Select = props => {
         name={name}
         onChange={onChange}
       >
-        <option value="">Seçiniz</option>
-        {placeholder && <option>{placeholder}</option>}
+        <option value="">{placeholder}</option>
         {_.map(options, ({ title: optionTitle, value }, key) => (
           <option key={key} value={value}>
             {optionTitle}
@@ -34,12 +36,13 @@ const Select = props => {
       </select>
     </div>
   );
-};
+}
 
 Select.defaultProps = {
   className: 'form-group',
   inputClassName: 'form-control',
-  options: []
+  options: [],
+  placeholder: 'Seçiniz'
 };
 
 Select.propTypes = {

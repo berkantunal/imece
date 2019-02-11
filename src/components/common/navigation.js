@@ -26,13 +26,13 @@ const Navigation = props => {
             Berkant Ulaş Ünal
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Link className="dropdown-item" to="/user/favorites">
+            <Link className="dropdown-item" activeClassName="" to="/user/favorites">
               Favorilerim
             </Link>
-            <Link className="dropdown-item" to="/user/information">
+            <Link className="dropdown-item" activeClassName="" to="/user/information">
               Hesap Bilgileri
             </Link>
-            <Link className="dropdown-item" to="/user/logout">
+            <Link className="dropdown-item" activeClassName="" to="/user/logout">
               Çıkış
             </Link>
           </Dropdown.Menu>
