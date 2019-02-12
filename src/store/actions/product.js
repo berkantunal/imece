@@ -12,16 +12,20 @@ export const NEW_STARTED_PRODUCTS_REJECTED = 'NEW_STARTED_PRODUCTS_REJECTED';
 export const CURRENT_PRODUCT_PENDING = 'CURRENT_PRODUCT_PENDING';
 export const CURRENT_PRODUCT_FULFILLED = 'CURRENT_PRODUCT_FULFILLED';
 export const CURRENT_PRODUCT_REJECTED = 'CURRENT_PRODUCT_REJECTED';
+export const FAVORITE_PRODUCTS_PENDING = 'FAVORITE_PRODUCTS_PENDING';
+export const FAVORITE_PRODUCTS_FULFILLED = 'FAVORITE_PRODUCTS_FULFILLED';
+export const FAVORITE_PRODUCTS_REJECTED = 'FAVORITE_PRODUCTS_REJECTED';
 
 export function getProducts(opts) {
-  const { limit, offset, orderType } = opts;
+  const { limit, offset, orderType, slugs } = opts;
 
   return axios()
     .get(`product`, {
       params: {
         limit,
         offset,
-        orderType
+        orderType,
+        slugs
       }
     })
     .then(res => res.data);
@@ -32,6 +36,15 @@ export function getProductList(limit, offset, orderType) {
     dispatch({
       payload: getProducts({ limit, offset, orderType }),
       type: 'PRODUCTS'
+    });
+  };
+}
+
+export function getFavoriteProductList(favorites, limit, offset, orderType) {
+  return dispatch => {
+    dispatch({
+      payload: getProducts({ limit, offset, orderType, slugs: favorites }),
+      type: 'FAVORITE_PRODUCTS'
     });
   };
 }

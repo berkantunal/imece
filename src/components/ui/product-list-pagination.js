@@ -19,7 +19,7 @@ class ListPagination extends React.Component {
   getPageCount() {
     const { count, limit } = this.props;
     let pageCount = count / limit;
-    const fixedPageCount = pageCount.toFixed();
+    const fixedPageCount = parseFloat(pageCount.toFixed());
 
     if (pageCount > fixedPageCount) {
       pageCount = fixedPageCount + 1;
@@ -58,8 +58,8 @@ class ListPagination extends React.Component {
     const { activePageNumber, className, extraClassName, onChangePage } = this.props;
     const pageCount = this.getPageCount();
 
-    if (!pageCount) {
-      return false;
+    if (pageCount < 1) {
+      return null;
     }
 
     const prevShowCount = activePageNumber - 5;
