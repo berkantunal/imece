@@ -3,7 +3,10 @@
 }
 
 .slider-product-item .image img {
+  display: block;
+  object-fit: cover;
   width: 100%;
+  height: 260px;
 }
 
 .slider-product-item .detail {

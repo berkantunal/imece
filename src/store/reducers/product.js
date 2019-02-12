@@ -1,43 +1,118 @@
 import {
-  SET_PRODUCTS_PENDING,
-  SET_PRODUCTS_FULFILLED,
-  SET_PRODUCTS_REJECTED,
-  SET_PRODUCT_COUNT_FULFILLED
+  PRODUCTS_PENDING,
+  PRODUCTS_FULFILLED,
+  PRODUCTS_REJECTED,
+  PRODUCT_COUNT_FULFILLED,
+  NEW_STARTED_PRODUCTS_PENDING,
+  NEW_STARTED_PRODUCTS_FULFILLED,
+  NEW_STARTED_PRODUCTS_REJECTED,
+  CURRENT_PRODUCT_PENDING,
+  CURRENT_PRODUCT_FULFILLED,
+  CURRENT_PRODUCT_REJECTED
 } from '../actions/product';
 
 const initialState = {
   count: 0,
+  current: {
+    data: [],
+    error: false,
+    fetched: false,
+    loading: false
+  },
   error: false,
   fetched: false,
   list: [],
-  loading: false
+  loading: false,
+  newStartedProducts: {
+    error: false,
+    fetched: false,
+    list: [],
+    loading: false
+  }
 };
 
 export default (state = initialState, action) => {
   // eslint-disable-next-line no-console
   // console.log('payload', action.type);
   switch (action.type) {
-    case SET_PRODUCTS_PENDING:
+    case PRODUCTS_PENDING:
       return {
         ...state,
         fetched: false,
         loading: true
       };
-    case SET_PRODUCTS_FULFILLED:
+    case PRODUCTS_FULFILLED:
       return {
         ...state,
         fetched: true,
         list: action.payload.data,
         loading: false
       };
-    case SET_PRODUCTS_REJECTED:
+    case PRODUCTS_REJECTED:
       return {
         ...state,
         error: true,
         fetched: false,
         loading: false
       };
-    case SET_PRODUCT_COUNT_FULFILLED:
+    case NEW_STARTED_PRODUCTS_PENDING:
+      return {
+        ...state,
+        newStartedProducts: {
+          ...state.newStartedProducts,
+          fetched: false,
+          loading: true
+        }
+      };
+    case NEW_STARTED_PRODUCTS_FULFILLED:
+      return {
+        ...state,
+        newStartedProducts: {
+          ...state.newStartedProducts,
+          fetched: true,
+          list: action.payload.data,
+          loading: false
+        }
+      };
+    case NEW_STARTED_PRODUCTS_REJECTED:
+      return {
+        ...state,
+        newStartedProducts: {
+          error: true,
+          fetched: false,
+          loading: false
+        }
+      };
+    case CURRENT_PRODUCT_PENDING:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          fetched: false,
+          loading: true
+        }
+      };
+    case CURRENT_PRODUCT_FULFILLED:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          data: action.payload.data,
+          fetched: true,
+          loading: false
+        }
+      };
+    case CURRENT_PRODUCT_REJECTED:
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          error: true,
+          fetched: false,
+          loading: false
+        }
+      };
+    case PRODUCT_COUNT_FULFILLED:
       return {
         ...state,
         count: action.payload.data

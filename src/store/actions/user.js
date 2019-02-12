@@ -9,6 +9,9 @@ export const SIGNUP_REJECTED = 'SIGNUP_REJECTED';
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_FULFILLED = 'LOGIN_FULFILLED';
 export const LOGIN_REJECTED = 'LOGIN_REJECTED';
+export const SET_FAVORITES_PENDING = 'SET_FAVORITES_PENDING';
+export const SET_FAVORITES_FULFILLED = 'SET_FAVORITES_FULFILLED';
+export const SET_FAVORITES_REJECTED = 'SET_FAVORITES_REJECTED';
 
 export function setSignupModalVisibility(value) {
   return dispatch => {
@@ -46,6 +49,24 @@ export function signup(form) {
         .post(`user/signup`, form)
         .then(res => res.data),
       type: 'SIGNUP'
+    });
+  };
+}
+
+export function setFavorites(userId = 0, favorites = []) {
+  if (!userId) {
+    return false;
+  }
+
+  return dispatch => {
+    dispatch({
+      payload: axios()
+        .put(`user/favorites`, {
+          favorites,
+          userId
+        })
+        .then(res => res.data),
+      type: 'SET_FAVORITES'
     });
   };
 }

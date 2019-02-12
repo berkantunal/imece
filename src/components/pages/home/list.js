@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Title, ProductList } from '$/components/ui/';
-import { getProducts, getCount } from '$/store/actions/product';
+import { getProductList, getCount } from '$/store/actions/product';
 
 const LIMIT = 8;
 
@@ -42,7 +42,7 @@ class HomeList extends React.Component {
   init(state) {
     const { activePageNumber: pageNumber, orderType } = state;
 
-    this.props.getProducts(LIMIT, LIMIT * pageNumber, orderType);
+    this.props.getProductList(LIMIT, LIMIT * pageNumber, orderType);
     this.props.getCount();
   }
 
@@ -75,7 +75,7 @@ class HomeList extends React.Component {
 
 HomeList.propTypes = {
   getCount: PropTypes.func,
-  getProducts: PropTypes.func,
+  getProductList: PropTypes.func,
   product: PropTypes.object
 };
 
@@ -87,7 +87,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getCount,
-  getProducts
+  getProductList
 };
 
 export default connect(

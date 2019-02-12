@@ -11,7 +11,7 @@ import '$/assets/css/common.css';
 const App = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/product" component={Product} />
+    <Route exact path="/p/:slug" component={Product} />
     <Route exact path="/user" component={User} />
     <Route path="/user/:module" component={User} />
   </Switch>

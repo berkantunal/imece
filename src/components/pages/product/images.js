@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Lightbox from 'react-image-lightbox';
 import { Button } from '$/components/ui/';
+import { getPreviewImage, getImages } from '$/helpers/image';
 
 import 'react-image-lightbox/style.css';
 
@@ -10,20 +11,30 @@ class Images extends Component {
   constructor(props) {
     super(props);
 
-    const firstImage = _.first(props.images);
+    const firstImage = getPreviewImage(props.images);
 
     this.state = {
       currentImage: firstImage,
+      images: [],
       isLightboxOpen: false
     };
   }
 
-  handleChangeImage(index) {
-    const { images } = this.props;
-    const { state } = this;
+  componentDidMount() {
+    let { images } = this.props;
+    images = getImages(images);
 
     this.setState({
-      ...state,
+      ...this.state,
+      images
+    });
+  }
+
+  handleChangeImage(index) {
+    const { images } = this.state;
+
+    this.setState({
+      ...this.state,
       currentImage: images[index]
     });
   }
@@ -38,8 +49,7 @@ class Images extends Component {
   }
 
   render() {
-    const { images } = this.props;
-    const { currentImage, isLightboxOpen } = this.state;
+    const { currentImage, images, isLightboxOpen } = this.state;
 
     return (
       <div className="product-images">
@@ -61,7 +71,7 @@ class Images extends Component {
         <div className="thumbnails">
           <div className="row">
             {_.map(images, (image, key) => (
-              <div key={key} className="col-4">
+              <div key={key} className="col-4 mb-3">
                 <Button
                   extraClassName={`btn-thumbnail ${currentImage === image ? 'active' : ''}`}
                   onClick={() => {

@@ -16,6 +16,7 @@ const ListItem = props => {
     oldPrice,
     price,
     requiredUserCount,
+    slug,
     subscriberCount
   } = product;
 
@@ -57,7 +58,7 @@ const ListItem = props => {
               sadece <big>{requiredUserCount - subscriberCount} Kişi</big> Kaldı!
             </p>
           </div>
-          <Link className="btn more" to="/product">
+          <Link className="btn more" to={`/p/${slug}`}>
             AYRINTILARA BAKIN
           </Link>
         </div>

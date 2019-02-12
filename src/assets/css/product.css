@@ -6,8 +6,18 @@
   width: 100%;
 }
 
+.product-content .product-images .image img {
+  height: 400px;
+  object-fit: contain;
+}
+
 .product-content .product-images .image .btn-lightbox i {
   color: var(--orange);
+}
+
+.product-content .product-images .thumbnails img {
+  height: 120px;
+  object-fit: cover;
 }
 
 .product-content .product-images .thumbnails .btn-thumbnail {
@@ -68,4 +78,14 @@
 
 .product-detail-context h3 {
   border-bottom: 1px solid #000;
+}
+
+.btn-favorite {
+  transition: 300ms;
+}
+
+.btn-favorite.active:active ,
+.btn-favorite.active:hover ,
+.btn-favorite.active {
+  color: #E91E63;
 }

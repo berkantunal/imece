@@ -1,27 +1,37 @@
-/* eslint-disable */
 import axios from '$/lib/axios';
 
-export const SET_PRODUCTS_PENDING = 'SET_PRODUCTS_PENDING';
-export const SET_PRODUCTS_FULFILLED = 'SET_PRODUCTS_FULFILLED';
-export const SET_PRODUCTS_REJECTED = 'SET_PRODUCTS_REJECTED';
-export const SET_PRODUCT_COUNT_PENDING = 'SET_PRODUCT_COUNT_PENDING';
-export const SET_PRODUCT_COUNT_FULFILLED = 'SET_PRODUCT_COUNT_FULFILLED';
-export const SET_PRODUCT_COUNT_REJECTED = 'SET_PRODUCT_COUNT_REJECTED';
+export const PRODUCTS_PENDING = 'PRODUCTS_PENDING';
+export const PRODUCTS_FULFILLED = 'PRODUCTS_FULFILLED';
+export const PRODUCTS_REJECTED = 'PRODUCTS_REJECTED';
+export const PRODUCT_COUNT_PENDING = 'PRODUCT_COUNT_PENDING';
+export const PRODUCT_COUNT_FULFILLED = 'PRODUCT_COUNT_FULFILLED';
+export const PRODUCT_COUNT_REJECTED = 'PRODUCT_COUNT_REJECTED';
+export const NEW_STARTED_PRODUCTS_PENDING = 'NEW_STARTED_PRODUCTS_PENDING';
+export const NEW_STARTED_PRODUCTS_FULFILLED = 'NEW_STARTED_PRODUCTS_FULFILLED';
+export const NEW_STARTED_PRODUCTS_REJECTED = 'NEW_STARTED_PRODUCTS_REJECTED';
+export const CURRENT_PRODUCT_PENDING = 'CURRENT_PRODUCT_PENDING';
+export const CURRENT_PRODUCT_FULFILLED = 'CURRENT_PRODUCT_FULFILLED';
+export const CURRENT_PRODUCT_REJECTED = 'CURRENT_PRODUCT_REJECTED';
 
-export function getProducts(limit, offset, orderType) {
-  console.log(orderType);
+export function getProducts(opts) {
+  const { limit, offset, orderType } = opts;
+
+  return axios()
+    .get(`product`, {
+      params: {
+        limit,
+        offset,
+        orderType
+      }
+    })
+    .then(res => res.data);
+}
+
+export function getProductList(limit, offset, orderType) {
   return dispatch => {
     dispatch({
-      payload: axios()
-        .get(`product`, {
-          params: {
-            limit,
-            offset,
-            orderType
-          }
-        })
-        .then(res => res.data),
-      type: 'SET_PRODUCTS'
+      payload: getProducts({ limit, offset, orderType }),
+      type: 'PRODUCTS'
     });
   };
 }
@@ -32,7 +42,30 @@ export function getCount() {
       payload: axios()
         .get(`product/count`)
         .then(res => res.data),
-      type: 'SET_PRODUCT_COUNT'
+      type: 'PRODUCT_COUNT'
+    });
+  };
+}
+
+export function getNewStartedProducts(limit = 12) {
+  return dispatch => {
+    dispatch({
+      payload: getProducts({ limit, orderType: 'timestampHigh' }),
+      type: 'NEW_STARTED_PRODUCTS'
+    });
+  };
+}
+
+export function getProductBySlug(slug = null) {
+  if (!slug) {
+    return false;
+  }
+  return dispatch => {
+    dispatch({
+      payload: axios()
+        .get(`product/${slug}`)
+        .then(res => res.data),
+      type: 'CURRENT_PRODUCT'
     });
   };
 }

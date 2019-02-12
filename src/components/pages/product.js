@@ -1,38 +1,110 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Header from '$/components/common/header';
 import Footer from '$/components/common/footer';
 import ProductSlider from '$/components/common/product-slider';
 import Social from '$/components/common/social';
+import _ from 'lodash';
 import ProductImages from './product/images';
 import { Button, Breadcrumbs, Title, SubscriberIcons } from '$/components/ui';
 import { getDateDiff } from '$/helpers/';
+import { getProductBySlug } from '$/store/actions/product';
+import { setFavorites } from '$/store/actions/user';
 
 import '$/assets/css/product.css';
 
-const PRODUCT = {
-  discountedPrice: 28000,
-  finishDate: '2019-03-18 00:00:00',
-  images: [
-    'https://via.placeholder.com/450x350.png?text=450x350%201',
-    'https://via.placeholder.com/450x350.png?text=450x350%202',
-    'https://via.placeholder.com/450x350.png?text=450x350%203'
-  ],
-  location: 'Ankara',
-  owner: 'TOYOTA PLAZA',
-  price: 40000,
-  requiredUserCount: 8,
-  subscriberCount: 4,
-  title: 'COROLLA 2019'
-};
+class Product extends React.Component {
+  constructor(props) {
+    super(props);
 
-class Product extends Component {
+    this.handleFavorite = this.handleFavorite.bind(this);
+    this.state = {
+      favorite: this.isFavorited()
+    };
+  }
+
+  componentDidMount() {
+    const { product, match } = this.props;
+    const slug = _.get(match, 'params.slug');
+
+    if (!product.current.loading && !product.current.fetched) {
+      this.props.getProductBySlug(slug);
+    }
+  }
+
   getCurrentProduct() {
-    return PRODUCT;
+    const { product, match } = this.props;
+    const { list } = product;
+    const slug = _.get(match, 'params.slug');
+    const stateProduct = _.find(list, { slug });
+    let response;
+
+    if (response) {
+      response = stateProduct;
+    }
+
+    if (product.current.fetched) {
+      response = product.current.data;
+    }
+
+    return response;
+  }
+
+  handleFavorite = () => {
+    let userFavorites;
+    let isFavorited;
+    const {
+      user: { user }
+    } = this.props;
+    const product = this.getCurrentProduct();
+    const { favorite } = this.state;
+
+    try {
+      userFavorites = product.favorites;
+      userFavorites = JSON.parse(userFavorites);
+    } catch (err) {
+      // Ignore Errors
+      userFavorites = [];
+    }
+
+    if (favorite) {
+      userFavorites = _.remove(userFavorites, favoritedSlug => product.slug === favoritedSlug);
+      isFavorited = 0;
+    }
+
+    if (!favorite) {
+      userFavorites.push(product.slug);
+      isFavorited = 1;
+    }
+
+    this.props.setFavorites(user.userId, userFavorites);
+
+    this.setState({
+      ...this.state,
+      favorite: isFavorited
+    });
+  };
+
+  isFavorited() {
+    const slug = _.get(this.props, 'match.params.slug');
+    const {
+      user: { user }
+    } = this.props;
+    const isFavorited = _.find(user.favorites, favoritedSlug => favoritedSlug === slug);
+
+    return isFavorited;
   }
 
   render() {
     const product = this.getCurrentProduct();
+
+    if (!product) {
+      return null;
+    }
+
     const finishDate = getDateDiff(product.finishDate);
+    const { favorite } = this.state;
 
     return (
       <div className="main-container">
@@ -53,8 +125,12 @@ class Product extends Component {
                   />
                 </div>
                 <div className="d-flex">
-                  <Button extraClassName="btn-default btn-sm">
-                    <i className="fa fa-star" /> Favorilerime Ekle
+                  <Button
+                    extraClassName={`btn-default btn-sm btn-favorite ${favorite ? 'active' : ''}`}
+                    onClick={this.handleFavorite}
+                  >
+                    <i className="fa fa-star" />{' '}
+                    {favorite ? 'Favorilerimden Çıkar' : 'Favorilerime Ekle'}
                   </Button>
                   <Button extraClassName="btn-default btn-sm">
                     <i className="fa fa-share-alt" /> Paylaş
@@ -70,7 +146,8 @@ class Product extends Component {
                 <div className="col-7">
                   <div className="price">
                     imece fiyatı
-                    <big>{product.discountedPrice} TL</big>
+                    <span className="line-through ml-1">{product.oldPrice} TL</span>
+                    <big>{product.price} TL</big>
                   </div>
                   <div className="d-flex justify-centent-between align-items-end">
                     <div className="w-100">
@@ -176,4 +253,27 @@ class Product extends Component {
   }
 }
 
-export default Product;
+Product.propTypes = {
+  getProductBySlug: PropTypes.func,
+  match: PropTypes.object,
+  product: PropTypes.object,
+  setFavorites: PropTypes.func,
+  user: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    product: state.product,
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = {
+  getProductBySlug,
+  setFavorites
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Product);

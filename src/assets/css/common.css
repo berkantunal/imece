@@ -42,6 +42,10 @@ a.underline {
   text-decoration: underline !important;
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .white {
   color: #fff;
 }

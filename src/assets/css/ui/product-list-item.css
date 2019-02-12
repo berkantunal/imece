@@ -64,10 +64,6 @@
   font-size: 14px;
 }
 
-.list-item .detail .price .line-through {
-  text-decoration: line-through;
-}
-
 .list-item .detail .price .discounted-price {
   color: var(--orange);
 }

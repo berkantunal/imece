@@ -2,26 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 import { SubscriberIcons, Link } from '.';
+import { getPreviewImage } from '$/helpers/image';
 
 import '$/assets/css/ui/slider-product-item.css';
 
 const SliderProductItem = props => {
-  const { className, extraClassName, data } = props;
+  const { className, extraClassName, product } = props;
+  const { title, owner, images, requiredUserCount, subscriberCount, slug } = product;
+
   return (
     <div className={cls(className, extraClassName)}>
       <div className="image">
-        <img src={data.image} alt={data.title} />
+        <img src={getPreviewImage(images)} alt={title} />
       </div>
       <div className="detail px-3 py-2">
-        <div className="owner">{data.owner}</div>
-        <div className="title">{data.title}</div>
+        <div className="owner">{owner}</div>
+        <div className="title">{title}</div>
         <div className="subscribers">
           <SubscriberIcons
-            requiredUserCount={data.requiredUserCount}
-            subscriberCount={data.subscriberCount}
+            requiredUserCount={requiredUserCount}
+            subscriberCount={subscriberCount}
           />
         </div>
-        <Link className="more" to="/">
+        <Link className="more" to={`/p/${slug}`}>
           <i className="fa fa-angle-right" />
         </Link>
       </div>
@@ -30,23 +33,13 @@ const SliderProductItem = props => {
 };
 
 SliderProductItem.defaultProps = {
-  className: 'slider-product-item',
-  data: {
-    discountedPrice: 28000,
-    image: 'https://via.placeholder.com/250x200.png?text=250x200',
-    location: 'Ankara',
-    owner: 'TOYOTA PLAZA',
-    price: 40000,
-    requiredUserCount: 8,
-    subscriberCount: 4,
-    title: 'COROLLA 2019'
-  }
+  className: 'slider-product-item'
 };
 
 SliderProductItem.propTypes = {
   className: PropTypes.string,
-  data: PropTypes.object,
-  extraClassName: PropTypes.string
+  extraClassName: PropTypes.string,
+  product: PropTypes.object
 };
 
 export default SliderProductItem;

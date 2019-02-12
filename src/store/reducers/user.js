@@ -6,10 +6,18 @@ import {
   SIGNUP_REJECTED,
   LOGIN_PENDING,
   LOGIN_FULFILLED,
-  LOGIN_REJECTED
+  LOGIN_REJECTED,
+  SET_FAVORITES_PENDING,
+  SET_FAVORITES_FULFILLED,
+  SET_FAVORITES_REJECTED
 } from '../actions/user';
 
 const initialState = {
+  favorite: {
+    error: false,
+    setted: false,
+    setting: false
+  },
   isLoggedIn: false,
   loadingLoading: false,
   loginModalVisibility: false,
@@ -76,6 +84,37 @@ export default (state = initialState, action) => {
         isLoggedIn: false,
         loginError: true,
         loginLoading: false
+      };
+    case SET_FAVORITES_PENDING:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          error: false,
+          setting: false
+        }
+      };
+    case SET_FAVORITES_FULFILLED:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          setted: true,
+          setting: false
+        },
+        user: {
+          ...state.user,
+          favorites: action.payload.favorites
+        }
+      };
+    case SET_FAVORITES_REJECTED:
+      return {
+        ...state,
+        favorite: {
+          ...state.favorite,
+          error: true,
+          setting: false
+        }
       };
     default:
       return state;
