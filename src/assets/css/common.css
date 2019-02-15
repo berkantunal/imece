@@ -1,6 +1,7 @@
 :global {
   @import '~@fortawesome/fontawesome-free/css/all.min.css';
   @import '~bootstrap/dist/css/bootstrap.min.css';
+  @import '~react-datepicker/dist/react-datepicker.css';
 }
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&subset=latin-ext');
@@ -101,4 +102,34 @@ a.underline {
 .page-content .btn-cart ,
 .page-header .btn {
   white-space: nowrap;
+}
+
+.react-datepicker__input-container,
+.react-datepicker-wrapper {
+  display: block;
+}
+
+.react-datepicker-wrapper input {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+  -o-transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+
+label em {
+  font-style: normal;
+  color: #de3341;
+  margin: 0 0 0 5px
 }

@@ -17,29 +17,33 @@ export const jsonDecode = jsonObj => {
 
 export const getImageLink = image => `${API_IMAGE_BASE}${image}`;
 
+export const getImages = images => {
+  let decodedImages = images;
+
+  try {
+    if (images != null && typeof decodedImages === 'string') {
+      decodedImages = jsonDecode(images);
+    }
+  } catch (err) {
+    // Ignore Errors
+  }
+
+  if (images && decodedImages) {
+    decodedImages = _.map(decodedImages, image => getImageLink(image));
+
+    return decodedImages;
+  }
+
+  return false;
+};
+
 export const getPreviewImage = images => {
   try {
-    const decodedImages = jsonDecode(images);
+    const decodedImages = getImages(images);
 
     if (decodedImages) {
       const previewImage = _.first(decodedImages);
-      return getImageLink(previewImage);
-    }
-  } catch (err) {
-    // Ignore errors
-  }
-
-  return DEFAULT_IMAGE;
-};
-
-export const getImages = images => {
-  try {
-    let decodedImages = jsonDecode(images);
-
-    if (decodedImages) {
-      decodedImages = _.map(decodedImages, image => getImageLink(image));
-
-      return decodedImages;
+      return previewImage;
     }
   } catch (err) {
     // Ignore errors

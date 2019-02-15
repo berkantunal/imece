@@ -6,7 +6,6 @@ export default () => {
   /* eslint-disable */
   if (typeof localStorage !== 'undefined' && localStorage['user'] !== undefined) {
     const user = JSON.parse(localStorage['user']);
-
     headers['authorization'] = user.token;
   }
   /* eslint-enable */

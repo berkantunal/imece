@@ -8,6 +8,7 @@ import SliderProductItem from './slider-product-item';
 import Search from './search';
 import Input from './input';
 import Select from './select';
+import Textarea from './textarea';
 import Title from './title';
 import ProductList from './product-list';
 import ProductListToolbar from './product-list-toolbar';
@@ -27,6 +28,7 @@ export {
   Search,
   Input,
   Select,
+  Textarea,
   Title,
   ProductList,
   ProductListToolbar,

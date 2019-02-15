@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 
-const Input = props => {
+const Textarea = props => {
   const {
     className,
     extraClassName,
@@ -12,7 +12,6 @@ const Input = props => {
     onChange,
     name,
     title,
-    type,
     value
   } = props;
 
@@ -24,8 +23,7 @@ const Input = props => {
           {required && <em>*</em>}
         </label>
       )}
-      <input
-        type={type}
+      <textarea
         className="form-control"
         id={name}
         placeholder={placeholder}
@@ -38,12 +36,11 @@ const Input = props => {
   );
 };
 
-Input.defaultProps = {
-  className: 'form-group',
-  type: 'text'
+Textarea.defaultProps = {
+  className: 'form-group'
 };
 
-Input.propTypes = {
+Textarea.propTypes = {
   className: PropTypes.string,
   extraClassName: PropTypes.string,
   name: PropTypes.string,
@@ -52,8 +49,7 @@ Input.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   title: PropTypes.string,
-  type: PropTypes.string,
   value: PropTypes.string
 };
 
-export default Input;
+export default Textarea;

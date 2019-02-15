@@ -31,12 +31,20 @@ class UserFavorites extends React.Component {
 
   init(state) {
     const { activePageNumber: pageNumber } = state;
-
     const {
       user: { user }
     } = this.props;
+    let favorites = [];
 
-    this.props.getFavoriteProductList(user.favorites, LIMIT, LIMIT * pageNumber);
+    if (typeof user.favorites === 'string') {
+      try {
+        favorites = JSON.parse(user.favorites);
+      } catch (err) {
+        // Ignore Errors
+      }
+    }
+
+    this.props.getFavoriteProductList(favorites, LIMIT, LIMIT * pageNumber);
   }
 
   render() {

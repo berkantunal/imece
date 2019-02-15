@@ -7,6 +7,7 @@ import _ from 'lodash';
 
 import Favorites from './user/favorites';
 import Information from './user/information';
+import Products from './user/products';
 
 import '$/assets/css/user.css';
 
@@ -21,6 +22,9 @@ const User = props => {
       break;
     case 'information':
       children = <Information {...props} />;
+      break;
+    case 'products':
+      children = <Products {...props} />;
       break;
     default:
       children = <Information {...props} />;
@@ -44,6 +48,11 @@ const User = props => {
                   <li>
                     <Link className="nav-link" to="/user/favorites">
                       Favorilerim
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="nav-link" to="/user/products">
+                      Ürünlerim
                     </Link>
                   </li>
                   <li>

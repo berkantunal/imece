@@ -42,6 +42,12 @@ export function login(form) {
   };
 }
 
+export function updateUserInformation(userId, form) {
+  return axios()
+    .put(`user/${userId}`, form)
+    .then(res => res.data);
+}
+
 export function signup(form) {
   return dispatch => {
     dispatch({

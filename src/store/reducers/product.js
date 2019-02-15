@@ -11,7 +11,10 @@ import {
   CURRENT_PRODUCT_REJECTED,
   FAVORITE_PRODUCTS_PENDING,
   FAVORITE_PRODUCTS_FULFILLED,
-  FAVORITE_PRODUCTS_REJECTED
+  FAVORITE_PRODUCTS_REJECTED,
+  USER_PRODUCTS_PENDING,
+  USER_PRODUCTS_FULFILLED,
+  USER_PRODUCTS_REJECTED
 } from '../actions/product';
 
 const initialState = {
@@ -33,6 +36,12 @@ const initialState = {
   list: [],
   loading: false,
   newStartedProducts: {
+    error: false,
+    fetched: false,
+    list: [],
+    loading: false
+  },
+  user: {
     error: false,
     fetched: false,
     list: [],
@@ -145,6 +154,34 @@ export default (state = initialState, action) => {
         ...state,
         favoriteProducts: {
           ...state.favoriteProducts,
+          error: true,
+          loading: false
+        }
+      };
+    case USER_PRODUCTS_PENDING:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          fetched: false,
+          loading: true
+        }
+      };
+    case USER_PRODUCTS_FULFILLED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          fetched: true,
+          list: action.payload.data,
+          loading: false
+        }
+      };
+    case USER_PRODUCTS_REJECTED:
+      return {
+        ...state,
+        user: {
+          ...state.user,
           error: true,
           loading: false
         }

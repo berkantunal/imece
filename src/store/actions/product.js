@@ -15,9 +15,12 @@ export const CURRENT_PRODUCT_REJECTED = 'CURRENT_PRODUCT_REJECTED';
 export const FAVORITE_PRODUCTS_PENDING = 'FAVORITE_PRODUCTS_PENDING';
 export const FAVORITE_PRODUCTS_FULFILLED = 'FAVORITE_PRODUCTS_FULFILLED';
 export const FAVORITE_PRODUCTS_REJECTED = 'FAVORITE_PRODUCTS_REJECTED';
+export const USER_PRODUCTS_PENDING = 'USER_PRODUCTS_PENDING';
+export const USER_PRODUCTS_FULFILLED = 'USER_PRODUCTS_FULFILLED';
+export const USER_PRODUCTS_REJECTED = 'USER_PRODUCTS_REJECTED';
 
 export function getProducts(opts) {
-  const { limit, offset, orderType, slugs } = opts;
+  const { limit, offset, orderType, slugs, userId } = opts;
 
   return axios()
     .get(`product`, {
@@ -25,7 +28,8 @@ export function getProducts(opts) {
         limit,
         offset,
         orderType,
-        slugs
+        slugs,
+        userId
       }
     })
     .then(res => res.data);
@@ -45,6 +49,15 @@ export function getFavoriteProductList(favorites, limit, offset, orderType) {
     dispatch({
       payload: getProducts({ limit, offset, orderType, slugs: favorites }),
       type: 'FAVORITE_PRODUCTS'
+    });
+  };
+}
+
+export function getUsersProductList(userId) {
+  return dispatch => {
+    dispatch({
+      payload: getProducts({ userId }),
+      type: 'USER_PRODUCTS'
     });
   };
 }
@@ -81,4 +94,22 @@ export function getProductBySlug(slug = null) {
       type: 'CURRENT_PRODUCT'
     });
   };
+}
+
+export function createProduct(form) {
+  return axios()
+    .post(`product/`, form)
+    .then(res => res.data);
+}
+
+export function updateProduct(productId, form) {
+  return axios()
+    .put(`product/${productId}`, form)
+    .then(res => res.data);
+}
+
+export function destroyProduct(productId, userId) {
+  return axios()
+    .delete(`product/user/${productId}/${userId}`)
+    .then(res => res.data);
 }

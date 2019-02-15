@@ -35,3 +35,20 @@
 .user-information .form .form-group .form-control {
   width: calc(100% - 150px);
 }
+
+.user-products .list-item-content .actions {
+  overflow: hidden;
+}
+
+.user-products .list-item-content .actions .btn {
+  transform: translateY(-100%);
+  transition: 300ms;
+}
+
+.user-products .list-item-content .actions .btn:last-child {
+  transition-delay: 100ms;
+}
+
+.user-products .list-item-content:hover .actions .btn {
+  transform: translateY(0);
+}

@@ -6,10 +6,13 @@ import { ProductListToolbar, ProductListItem, ProductListPagination } from '.';
 
 const List = props => {
   const {
+    actions,
     activePageNumber,
     className,
     count,
     extraClassName,
+    handleRemove,
+    handleUpdate,
     limit,
     onChangeOrderBy,
     onChangePage,
@@ -27,6 +30,9 @@ const List = props => {
             key={product.productId}
             product={product}
             extraClassName={productItemClassName}
+            actions={actions}
+            handleRemove={handleRemove}
+            handleUpdate={handleUpdate}
           />
         ))}
       </div>
@@ -51,10 +57,13 @@ List.defaultProps = {
 };
 
 List.propTypes = {
+  actions: PropTypes.bool,
   activePageNumber: PropTypes.number,
   className: PropTypes.string,
   count: PropTypes.number,
   extraClassName: PropTypes.string,
+  handleRemove: PropTypes.func,
+  handleUpdate: PropTypes.func,
   limit: PropTypes.number,
   onChangeOrderBy: PropTypes.func,
   onChangePage: PropTypes.func,

@@ -29,6 +29,9 @@ const Navigation = props => {
             <Link className="dropdown-item" activeClassName="" to="/user/favorites">
               Favorilerim
             </Link>
+            <Link className="dropdown-item" activeClassName="" to="/user/products">
+              Ürünlerim
+            </Link>
             <Link className="dropdown-item" activeClassName="" to="/user/information">
               Hesap Bilgileri
             </Link>
