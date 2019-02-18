@@ -18,6 +18,16 @@ const Select = props => {
     options
   } = props;
 
+  let { value: currentValue } = props;
+
+  if (typeof currentValue !== 'string') {
+    try {
+      currentValue = currentValue.toString();
+    } catch (err) {
+      // Ignore
+    }
+  }
+
   return (
     <div className={cls(className, extraClassName)}>
       {title && <label htmlFor={name}>{title}</label>}
@@ -29,7 +39,7 @@ const Select = props => {
       >
         <option value="">{placeholder}</option>
         {_.map(options, ({ title: optionTitle, value }, key) => (
-          <option key={key} value={value}>
+          <option selected={currentValue === value.toString()} key={key} value={value}>
             {optionTitle}
           </option>
         ))}
@@ -54,6 +64,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   options: PropTypes.oneOfType(PropTypes.array, PropTypes.object),
   placeholder: PropTypes.string,
+  value: PropTypes.string,
   title: PropTypes.string
 };
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
-import { SubscriberIcons, Link } from '.';
+import { Link } from '.';
 import { getPreviewImage } from '$/helpers/image';
 
 import '$/assets/css/ui/slider-product-item.css';
 
 const SliderProductItem = props => {
   const { className, extraClassName, product } = props;
-  const { title, owner, images, requiredUserCount, subscriberCount, slug } = product;
+  const { title, owner, images, slug } = product;
 
   return (
     <div className={cls(className, extraClassName)}>
@@ -18,12 +18,6 @@ const SliderProductItem = props => {
       <div className="detail px-3 py-2">
         <div className="owner">{owner}</div>
         <div className="title">{title}</div>
-        <div className="subscribers">
-          <SubscriberIcons
-            requiredUserCount={requiredUserCount}
-            subscriberCount={subscriberCount}
-          />
-        </div>
         <Link className="more" to={`/p/${slug}`}>
           <i className="fa fa-angle-right" />
         </Link>

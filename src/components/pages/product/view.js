@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductImages from './images';
-import { Button, Title, SubscriberIcons } from '$/components/ui';
-import { getDateDiff } from '$/helpers/';
+import { Button, Title, SubscriberDegree } from '$/components/ui';
+import { getDateDiff, jsonDecode } from '$/helpers/';
 
 import '$/assets/css/product.css';
 
 const ProductView = props => {
   const { product } = props;
   const finishDate = getDateDiff(product.finishDate);
+  const tierPrice = jsonDecode(product.tierPrice);
 
   return (
     <div className="product-view">
@@ -16,28 +17,27 @@ const ProductView = props => {
         <div className="row">
           <div className="col-5">{product.images && <ProductImages images={product.images} />}</div>
           <div className="col-7">
-            <div className="price">
-              imece fiyatı
-              <span className="line-through ml-1">{product.oldPrice} TL</span>
-              <big>{product.price} TL</big>
+            <div className="w-100 pb-4 d-flex justify-content-between align-items-center">
+              <div className="price">
+                imece fiyatı
+                <span className="line-through ml-1">{product.oldPrice} TL</span>
+              </div>
+              <div className="tier-price-content">
+                {tierPrice.map(priceOpt => (
+                  <div className="tier-price">
+                    {priceOpt.requiredUserCount} kişiye kadar <big>{priceOpt.price} TL</big>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="d-flex justify-centent-between align-items-end">
+            <div className="d-flex justify-centent-between align-items-center">
               <div className="w-100">
-                <SubscriberIcons
-                  requiredUserCount={product.requiredUserCount}
-                  subscriberCount={product.subscriberCount}
-                  iconClassName="fas fa-male"
-                />
+                <SubscriberDegree tierPrice={tierPrice} subscriberCount={product.subscriberCount} />
               </div>
               <Button extraClassName="btn-cart btn-lg">İmeceye Katıl</Button>
             </div>
             <p className="py-3 mb-0 user-subscribtion-info">
-              Bu pakete sahip olmak için {product.requiredUserCount} kişinin katılımı gerekiyor.
-              <br />
-              Şu ana kadar imeceye
-              {product.subscriberCount}
-              kişi katıldı ve imecenin kapanmasına{' '}
-              {product.requiredUserCount - product.subscriberCount} kişi kaldı.
+              Şu ana kadar imeceye {product.subscriberCount} kişi katıldı
             </p>
             <ul className="detail-list list-unstyled">
               <li className="d-flex">
@@ -47,10 +47,6 @@ const ProductView = props => {
               <li className="d-flex">
                 <div className="title">İmece Şehir:</div>
                 <div className="value">{product.location}</div>
-              </li>
-              <li className="d-flex">
-                <div className="title">Gerekli Kişi:</div>
-                <div className="value">{product.requiredUserCount}</div>
               </li>
               <li className="d-flex">
                 <div className="title">Katılan:</div>

@@ -33,3 +33,19 @@ export const optionList = (array = [], valueCol, titleCol) => {
 
   return optionListArr;
 };
+
+export const jsonDecode = encodedStr => {
+  let decodedStr = {};
+
+  try {
+    if (typeof encodedStr === 'string') {
+      decodedStr = JSON.parse(encodedStr);
+    } else if (typeof encodedStr === 'object') {
+      decodedStr = encodedStr;
+    }
+  } catch (err) {
+    // Ignore Errors
+  }
+
+  return decodedStr;
+};

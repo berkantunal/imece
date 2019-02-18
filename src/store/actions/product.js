@@ -20,11 +20,12 @@ export const USER_PRODUCTS_FULFILLED = 'USER_PRODUCTS_FULFILLED';
 export const USER_PRODUCTS_REJECTED = 'USER_PRODUCTS_REJECTED';
 
 export function getProducts(opts) {
-  const { limit, offset, orderType, slugs, userId } = opts;
+  const { filter, limit, offset, orderType, slugs, userId } = opts;
 
   return axios()
     .get(`product`, {
       params: {
+        filter,
         limit,
         offset,
         orderType,
@@ -35,10 +36,10 @@ export function getProducts(opts) {
     .then(res => res.data);
 }
 
-export function getProductList(limit, offset, orderType) {
+export function getProductList(limit, offset, orderType, filter) {
   return dispatch => {
     dispatch({
-      payload: getProducts({ limit, offset, orderType }),
+      payload: getProducts({ filter, limit, offset, orderType }),
       type: 'PRODUCTS'
     });
   };
@@ -62,11 +63,13 @@ export function getUsersProductList(userId) {
   };
 }
 
-export function getCount() {
+export function getCount(filter) {
   return dispatch => {
     dispatch({
       payload: axios()
-        .get(`product/count`)
+        .get(`product/count`, {
+          params: { filter }
+        })
         .then(res => res.data),
       type: 'PRODUCT_COUNT'
     });

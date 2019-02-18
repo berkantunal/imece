@@ -1,22 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Title, ProductList } from '$/components/ui/';
+import { ProductList } from '$/components/ui/';
 import { getProductList, getCount } from '$/store/actions/product';
+import { jsonDecode } from '$/helpers/';
 
-const LIMIT = 8;
+const LIMIT = 9;
 
-class HomeList extends React.Component {
+class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      activePageNumber: 0
+      activePageNumber: 0,
+      filter: this.getFilter()
     };
   }
 
   componentDidMount() {
     this.init(this.state);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filter !== prevProps.filter) {
+      const filter = this.getFilter();
+
+      const state = {
+        ...this.state,
+        filter
+      };
+
+      this.init(state);
+    }
+  }
+
+  getFilter() {
+    let { filter } = this.props;
+    filter = jsonDecode(filter);
+
+    return filter;
   }
 
   handleChangePage = pageNumber => {
@@ -25,7 +47,6 @@ class HomeList extends React.Component {
       activePageNumber: pageNumber
     };
 
-    this.setState(state);
     this.init(state);
   };
 
@@ -35,15 +56,15 @@ class HomeList extends React.Component {
       orderType
     };
 
-    this.setState(state);
     this.init(state);
   };
 
   init(state) {
-    const { activePageNumber: pageNumber, orderType } = state;
+    const { activePageNumber: pageNumber, orderType, filter } = state;
 
-    this.props.getProductList(LIMIT, LIMIT * pageNumber, orderType);
-    this.props.getCount();
+    this.setState(state);
+    this.props.getProductList(LIMIT, LIMIT * pageNumber, orderType, filter);
+    this.props.getCount(filter);
   }
 
   render() {
@@ -52,14 +73,6 @@ class HomeList extends React.Component {
 
     return (
       <div className="category-list">
-        <div className="header py-3 pl-5">
-          <Title type="h2" extraClassName="bold">
-            TÜM İMECELER
-          </Title>
-          <Title type="h6" extraClassName="sub">
-            İmece sepetinde toplam 169 adet kayıt bulundu.
-          </Title>
-        </div>
         <ProductList
           toolbar
           activePageNumber={activePageNumber}
@@ -67,13 +80,16 @@ class HomeList extends React.Component {
           onChangeOrderBy={this.handleChangeOrderBy}
           count={product.count}
           products={product.list}
+          productItemClassName="col-4 mt-3"
+          limit={LIMIT}
         />
       </div>
     );
   }
 }
 
-HomeList.propTypes = {
+CategoryList.propTypes = {
+  filter: PropTypes.object,
   getCount: PropTypes.func,
   getProductList: PropTypes.func,
   product: PropTypes.object
@@ -93,4 +109,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeList);
+)(CategoryList);

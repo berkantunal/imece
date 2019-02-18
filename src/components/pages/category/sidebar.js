@@ -1,47 +1,22 @@
 import React from 'react';
-import { Slider, Search } from '$/components/ui/';
+import PropTypes from 'prop-types';
+import Search from './sidebar/search';
+import { Title } from '$/components/ui/';
 
-const HomeSlider = () => (
-  <div className="main-slider">
-    <Slider
-      settings={{
-        arrows: false,
-        dots: false,
-        infinite: true,
-        slidesToScroll: 1,
-        slidesToShow: 1,
-        speed: 500
-      }}
-    >
-      <div className="slider-item">
-        <picture>
-          <source
-            media="(min-width: 650px)"
-            srcSet="https://via.placeholder.com/1920x500.png?text=1920x500"
-          />
-          <source
-            media="(max-width: 650px)"
-            srcSet="https://via.placeholder.com/500x500.png?text=500x500"
-          />
-          <img src="https://via.placeholder.com/1920x500.png?text=1920x500" alt="Slider 1" />
-        </picture>
-      </div>
-      <div className="slider-item">
-        <picture>
-          <source
-            media="(min-width: 650px)"
-            srcSet="https://via.placeholder.com/1920x500.png?text=1920x500"
-          />
-          <source
-            media="(max-width: 650px)"
-            srcSet="https://via.placeholder.com/500x500.png?text=500x500"
-          />
-          <img src="https://via.placeholder.com/1920x500.png?text=1920x500" alt="Slider 1" />
-        </picture>
-      </div>
-    </Slider>
-    <Search />
+import '$/assets/css/category-sidebar.css';
+
+const CategorySideBar = props => (
+  <div className="category-sidebar p-2">
+    <div>
+      <Title type="h3">Arama</Title>
+    </div>
+    <Search url={props.url} handleChangeFilter={props.handleChangeFilter} />
   </div>
 );
 
-export default HomeSlider;
+CategorySideBar.propTypes = {
+  handleChangeFilter: PropTypes.func,
+  url: PropTypes.string
+};
+
+export default CategorySideBar;

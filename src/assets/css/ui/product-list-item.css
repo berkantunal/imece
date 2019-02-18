@@ -48,6 +48,11 @@
   font-size: 14px;
 }
 
+
+.list-item .detail > .subscribers {
+  padding: 30px 15px;
+}
+
 .list-item .detail .location ,
 .list-item .detail .price ,
 .list-item .detail .comments {

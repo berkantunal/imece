@@ -5,7 +5,6 @@ import Link from './link';
 import Modal from './modal';
 import Slider from './slider';
 import SliderProductItem from './slider-product-item';
-import Search from './search';
 import Input from './input';
 import Select from './select';
 import Textarea from './textarea';
@@ -13,6 +12,7 @@ import Title from './title';
 import ProductList from './product-list';
 import ProductListToolbar from './product-list-toolbar';
 import ProductListItem from './product-list-item';
+import SubscriberDegree from './subscriber-degree';
 import SubscriberIcons from './subscriber-icons';
 import ProductListPagination from './product-list-pagination';
 import FooterList from './footer-list';
@@ -25,7 +25,6 @@ export {
   Modal,
   Slider,
   SliderProductItem,
-  Search,
   Input,
   Select,
   Textarea,
@@ -33,6 +32,7 @@ export {
   ProductList,
   ProductListToolbar,
   ProductListItem,
+  SubscriberDegree,
   SubscriberIcons,
   ProductListPagination,
   FooterList

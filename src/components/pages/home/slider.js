@@ -1,5 +1,6 @@
 import React from 'react';
-import { Slider, Search } from '$/components/ui/';
+import { Slider } from '$/components/ui/';
+import Search from './slider/search';
 
 const HomeSlider = () => (
   <div className="main-slider">
