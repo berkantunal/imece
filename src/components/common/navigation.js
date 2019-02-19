@@ -1,78 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from '$/components/ui/';
 import { connect } from 'react-redux';
-import { Link, Button } from '$/components/ui/';
-import { Dropdown } from 'react-bootstrap';
+import UserNavigation from './navigation/user';
+import UserCardNavigation from './navigation/user-card';
 import Login from './login';
 import Signup from './signup';
-import { setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
 
 import '$/assets/css/navigation.css';
 
-const Navigation = props => {
-  const { isLoggedIn } = props.user;
-
-  let userNavigation;
-  if (isLoggedIn) {
-    userNavigation = (
-      <div className="user-card-navigation d-flex">
-        <Dropdown>
-          <Dropdown.Toggle className="d-flex align-items-center" id="dropdown-basic">
-            <img
-              className="mr-2"
-              src="https://via.placeholder.com/40x40.png?text=40x40"
-              alt="User"
-            />
-            Berkant Ulaş Ünal
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Link className="dropdown-item" activeClassName="" to="/user/favorites">
-              Favorilerim
-            </Link>
-            <Link className="dropdown-item" activeClassName="" to="/user/products">
-              Ürünlerim
-            </Link>
-            <Link className="dropdown-item" activeClassName="" to="/user/information">
-              Hesap Bilgileri
-            </Link>
-            <Link className="dropdown-item" activeClassName="" to="/user/logout">
-              Çıkış
-            </Link>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-    );
-  } else {
-    userNavigation = (
-      <div className="user-navigation d-flex">
-        <div className="nav-item">
-          <Button
-            className="nav-link"
-            extraClassName="btn-nav-link"
-            onClick={() => {
-              props.setSignupModalVisibility(true);
-            }}
-          >
-            <i className="fa fa-pen" />
-            Kayıt Ol
-          </Button>
-        </div>
-        <div className="nav-item">
-          <Button
-            className="nav-link"
-            extraClassName="btn-nav-link"
-            onClick={() => {
-              props.setLoginModalVisibility(true);
-            }}
-          >
-            <i className="fa fa-user" />
-            Giriş
-          </Button>
-        </div>
-      </div>
-    );
-  }
-
+const Navigation = () => {
   return (
     <nav className="navigation h-100 d-flex justify-content-end align-items-stretch">
       <div className="nav-item">
@@ -82,15 +18,10 @@ const Navigation = props => {
       </div>
       <Login />
       <Signup />
-      {userNavigation}
+      <UserNavigation />
+      <UserCardNavigation />
     </nav>
   );
-};
-
-Navigation.propTypes = {
-  setLoginModalVisibility: PropTypes.func,
-  setSignupModalVisibility: PropTypes.func,
-  user: PropTypes.object
 };
 
 const mapStateToProps = state => {
@@ -99,12 +30,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  setLoginModalVisibility,
-  setSignupModalVisibility
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navigation);
+export default connect(mapStateToProps)(Navigation);

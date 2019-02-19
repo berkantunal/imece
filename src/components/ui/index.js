@@ -12,6 +12,7 @@ import Title from './title';
 import ProductList from './product-list';
 import ProductListToolbar from './product-list-toolbar';
 import ProductListItem from './product-list-item';
+import ProductGridItem from './product-grid-item';
 import SubscriberDegree from './subscriber-degree';
 import SubscriberIcons from './subscriber-icons';
 import ProductListPagination from './product-list-pagination';
@@ -32,6 +33,7 @@ export {
   ProductList,
   ProductListToolbar,
   ProductListItem,
+  ProductGridItem,
   SubscriberDegree,
   SubscriberIcons,
   ProductListPagination,

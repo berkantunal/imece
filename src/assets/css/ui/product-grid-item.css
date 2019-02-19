@@ -1,0 +1,113 @@
+.grid-item {
+  background-color: #fff;
+  transition: 300ms;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item:hover {
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item .owner ,
+.grid-item .title {
+  font-size: 1.2em;
+  line-height: 1.2;
+  font-weight: 600;
+  text-align: center;
+}
+
+.grid-item .image {
+  position: relative;
+}
+
+.grid-item .image:after {
+  content: "";
+  display: block;
+  background-color: var(--orange);
+  width: 30%;
+  height: 2px;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+}
+
+.grid-item .image img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 160px;
+}
+
+.grid-item .detail {
+  width: 100%;
+  display: block;
+}
+
+.grid-item .detail > div {
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+
+.grid-item .detail > .subscribers {
+  padding: 15px 0;
+}
+
+.grid-item .detail .location ,
+.grid-item .detail .price ,
+.grid-item .detail .comments {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted var(--default-color);
+}
+
+.grid-item .detail .location i ,
+.grid-item .detail .price i ,
+.grid-item .detail .comments i {
+  color: var(--orange);
+  width: 25px;
+  font-size: 14px;
+}
+
+.grid-item .detail .price .discounted-price {
+  color: var(--orange);
+}
+
+.grid-item .detail .price .discounted-price big {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 0 5px;
+}
+
+.grid-item .detail .subscribers p {
+  line-height: 1.2;
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+.grid-item .detail .subscribers p strong ,
+.grid-item .detail .subscribers p big {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.grid-item .detail .subscribers p big {
+  color: var(--orange);
+}
+
+.grid-item .more {
+  width: 100%;
+  border: 1px solid;
+  padding: 4px 0;
+  font-size: 14px;
+  transition: 300ms;
+}
+
+.grid-item:hover .more {
+  color: #fff;
+  background-color: var(--default-color);
+}
+
+.grid-item .subscriber-degree {
+  width: 90%;
+}

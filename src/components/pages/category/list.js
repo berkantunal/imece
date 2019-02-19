@@ -80,7 +80,7 @@ class CategoryList extends React.Component {
           onChangeOrderBy={this.handleChangeOrderBy}
           count={product.count}
           products={product.list}
-          productItemClassName="col-4 mt-3"
+          productGridItemClassName="col-4 mt-3"
           limit={LIMIT}
         />
       </div>
@@ -89,7 +89,7 @@ class CategoryList extends React.Component {
 }
 
 CategoryList.propTypes = {
-  filter: PropTypes.object,
+  filter: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   getCount: PropTypes.func,
   getProductList: PropTypes.func,
   product: PropTypes.object

@@ -23,6 +23,11 @@
   border-bottom: 2px dotted var(--default-color);
 }
 
+.category-slider .category-slider-item a {
+  color: #000;
+  text-decoration: none;
+}
+
 .category-slider .category-slider-item .icon {
   display: flex;
   position: relative;

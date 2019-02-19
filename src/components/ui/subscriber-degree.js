@@ -41,8 +41,8 @@ class SubscriberDegree extends React.Component {
         <div className="point">
           <span>{maxRequiredUserCount}</span>
         </div>
-        {_.map(decodedTierPrice, priceOpt => (
-          <div className="point">
+        {_.map(decodedTierPrice, (priceOpt, key) => (
+          <div className="point" key={key}>
             <span>{priceOpt.requiredUserCount}</span>
           </div>
         ))}
@@ -55,7 +55,7 @@ class SubscriberDegree extends React.Component {
 
 SubscriberDegree.propTypes = {
   subscriberCount: PropTypes.number.isRequired,
-  tierPrice: PropTypes.object.isRequired
+  tierPrice: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired
 };
 
 export default SubscriberDegree;

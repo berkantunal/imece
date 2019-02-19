@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Breadcrumbs, Title, ProductList } from '$/components/ui/';
 import { getFavoriteProductList } from '$/store/actions/product';
+import { jsonDecode } from '$/helpers/';
 
 const LIMIT = 6;
 
@@ -34,17 +35,9 @@ class UserFavorites extends React.Component {
     const {
       user: { user }
     } = this.props;
-    let favorites = [];
+    const userFavorites = jsonDecode(user.favorites);
 
-    if (typeof user.favorites === 'string') {
-      try {
-        favorites = JSON.parse(user.favorites);
-      } catch (err) {
-        // Ignore Errors
-      }
-    }
-
-    this.props.getFavoriteProductList(favorites, LIMIT, LIMIT * pageNumber);
+    this.props.getFavoriteProductList(userFavorites, LIMIT, LIMIT * pageNumber);
   }
 
   render() {
@@ -53,8 +46,8 @@ class UserFavorites extends React.Component {
       user: { user }
     } = this.props;
     const { activePageNumber } = this.state;
-
-    const favoriteProductCount = user.favorites ? user.favorites.length : 0;
+    const userFavorites = jsonDecode(user.favorites);
+    const favoriteProductCount = userFavorites ? userFavorites.length : 0;
 
     return (
       <div className="user-favorites">
@@ -77,7 +70,8 @@ class UserFavorites extends React.Component {
             count={favoriteProductCount}
             limit={LIMIT}
             products={product.favoriteProducts.list}
-            productItemClassName="col-4 mt-3"
+            productGridItemClassName="col-4 mt-3"
+            grid
           />
         </div>
       </div>

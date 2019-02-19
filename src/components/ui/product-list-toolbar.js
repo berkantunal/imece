@@ -20,7 +20,7 @@ class ListToolbar extends React.Component {
   }
 
   render() {
-    const { className, extraClassName } = this.props;
+    const { className, extraClassName, gridType, onChangeGridType } = this.props;
 
     return (
       <div className={cls(className, extraClassName)}>
@@ -49,10 +49,16 @@ class ListToolbar extends React.Component {
               <label htmlFor="list-style" className="mb-0 mr-3">
                 Gösterim Şekli
               </label>
-              <Button extraClassName="btn-default px-2">
+              <Button
+                extraClassName={`btn-default px-2 ${gridType === 'grid' ? 'active' : ''}`}
+                onClick={() => onChangeGridType('grid')}
+              >
                 <i className="fa fa-th" />
               </Button>
-              <Button extraClassName="btn-default px-2">
+              <Button
+                extraClassName={`btn-default px-2 ${gridType === 'list' ? 'active' : ''}`}
+                onClick={() => onChangeGridType('list')}
+              >
                 <i className="fa fa-bars" />
               </Button>
             </div>
@@ -70,6 +76,8 @@ ListToolbar.defaultProps = {
 ListToolbar.propTypes = {
   className: PropTypes.string,
   extraClassName: PropTypes.string,
+  gridType: PropTypes.string,
+  onChangeGridType: PropTypes.func,
   onChangeOrderBy: PropTypes.func
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Input, Select, Button } from '$/components/ui/';
 import { getCities } from '$/store/actions/city';
@@ -15,7 +16,8 @@ class Search extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      form: {}
+      form: {},
+      redirect: false
     };
   }
 
@@ -41,28 +43,37 @@ class Search extends React.Component {
     });
   };
 
-  handleSubmit() {}
+  handleSubmit() {
+    this.setState({
+      ...this.state,
+      redirect: true
+    });
+  }
 
   render() {
     const { category, city } = this.props;
-    const { form } = this.state;
+    const { form, redirect } = this.state;
+    const encodedForm = JSON.stringify(form);
 
     return (
       <div className="search mx-auto">
+        {redirect && encodedForm && (
+          <Redirect to={`/category?filter=${encodeURIComponent(encodedForm)}`} />
+        )}
         <div className="d-flex justify-content-stretch">
           <div className="col-4">
             <Input
-              name="searchString"
+              name="search"
               placeholder="Arama Kelimeleri"
-              value={form.searchString}
+              value={form.search}
               onChange={this.handleChange}
             />
           </div>
           <div className="col-3">
             <Select
-              name="city"
+              name="location"
               placeholder="Şehir"
-              value={form.city}
+              value={form.location}
               onChange={this.handleChange}
               options={city.optionList}
             />
@@ -71,13 +82,13 @@ class Search extends React.Component {
             <Select
               name="productCategoryId"
               placeholder="Kategori"
-              value={form.category}
+              value={form.productCategoryId}
               onChange={this.handleChange}
               options={category.optionList}
             />
           </div>
           <div className="col-2">
-            <Button extraClassName="btn-default w-100">
+            <Button extraClassName="btn-default w-100" onClick={this.handleSubmit}>
               <i className="fa fa-search" />
             </Button>
           </div>

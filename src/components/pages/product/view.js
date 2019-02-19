@@ -65,42 +65,11 @@ const ProductView = props => {
         </div>
       </div>
       <div className="product-detail-context p-3 mb-5">
+        <p>{product.shortDescription}</p>
         <Title type="h3" extraClassName="bold mb-2 pb-2">
-          VAMOS SPORT PAKETİ DETAYLARI
+          Nasıl Çalışır ?
         </Title>
-        <Title type="h5" extraClassName="bold">
-          Kimler İçin Uygundur ?
-        </Title>
-        <p>
-          Sport merkezini yoğun kullanacak, hergün spor yapmak ve rahatlamak isteyen kişi için
-          önerilir.
-        </p>
-        <Title type="h5" extraClassName="bold">
-          Kullanım Günleri / Saatleri
-        </Title>
-        <table>
-          <tbody>
-            <tr>
-              <td>Hafta İçi</td>
-              <td>06:30 - 23:30</td>
-            </tr>
-            <tr>
-              <td>Hafta Sonu</td>
-              <td>08:00 - 21:30</td>
-            </tr>
-          </tbody>
-        </table>
-        <Title type="h3" extraClassName="bold mt-2 pb-2">
-          VAMOS İLETİŞİM BİLGİLERİ
-        </Title>
-        <p>
-          <strong>Adres.</strong>
-          <br /> Karakusunlar Mah. Muhsin Yazıcıoğlu Cad. No :49 100. Yıl / Ankara
-        </p>
-        <p>
-          <strong>Telefon.</strong>
-          <br /> 0 312 287 77 55
-        </p>
+        <p>{product.description}</p>
       </div>
     </div>
   );

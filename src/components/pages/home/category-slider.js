@@ -1,13 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Slider, Title } from '$/components/ui/';
+import { Slider, Title, Link } from '$/components/ui/';
 import { getCategories } from '$/store/actions/product-category';
 import _ from 'lodash';
 
 class CategorySlider extends React.Component {
   componentDidMount() {
     this.props.getCategories();
+  }
+
+  getUrl(categoryRow) {
+    const encodedForm = JSON.stringify({ productCategoryId: categoryRow.productCategoryId });
+
+    return `/category?filter=${encodeURIComponent(encodedForm)}`;
   }
 
   render() {
@@ -29,14 +35,16 @@ class CategorySlider extends React.Component {
         >
           {_.map(category.list, categoryRow => (
             <div key={categoryRow} className="category-slider-item">
-              <div className="d-flex flex-column align-items-center justify-content-center">
-                <div className="icon">
-                  <i className="fa fa-car" />
+              <Link to={this.getUrl(categoryRow)}>
+                <div className="d-flex flex-column align-items-center justify-content-center">
+                  <div className="icon">
+                    <i className="fa fa-car" />
+                  </div>
+                  <Title type="h3" extraClassName="bold mt-3">
+                    {categoryRow.title}
+                  </Title>
                 </div>
-                <Title type="h3" extraClassName="bold mt-3">
-                  {categoryRow.title}
-                </Title>
-              </div>
+              </Link>
             </div>
           ))}
         </Slider>

@@ -57,7 +57,7 @@ class HomeList extends React.Component {
             TÜM İMECELER
           </Title>
           <Title type="h6" extraClassName="sub">
-            İmece sepetinde toplam 169 adet kayıt bulundu.
+            İmece sepetinde toplam {product.count} adet kayıt bulundu.
           </Title>
         </div>
         <ProductList
