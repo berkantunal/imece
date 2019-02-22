@@ -79,3 +79,9 @@
   right: 0;
   background: #000;
 }
+
+@media (max-width: 768px) {
+  .subscriber-degree {
+    max-width: none;
+  }  
+}

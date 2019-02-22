@@ -38,20 +38,25 @@ class GridItem extends React.Component {
     const { price } = this.state;
 
     const previewImage = getPreviewImage(images);
+    const link = `/p/${slug}`;
 
     return (
       <div className={cls(className, extraClassName)}>
         <div className="grid-item-content">
           <div className="grid-item px-2 py-3">
             <div className="row align-items-center">
-              <div className="col-3">
+              <div className="col-4 col-sm-3">
                 <div className="image">
-                  <img src={previewImage} alt={title} />
+                  <Link to={link}>
+                    <img src={previewImage} alt={title} />
+                  </Link>
                 </div>
               </div>
-              <div className="col-6">
-                <div className="title-content d-flex">
-                  <div className="title">{title}</div>
+              <div className="col-8 col-sm-6">
+                <div className="title-content d-sm-flex">
+                  <div className="title">
+                    <Link to={link}>{title}</Link>
+                  </div>
                   <div className="owner ml-3">
                     <strong>{owner}</strong>
                   </div>
@@ -67,7 +72,7 @@ class GridItem extends React.Component {
                       <span className="line-through">{oldPrice} TL</span>
                     </div>
                     <div className="discounted-price">
-                      imece fiyatı
+                      UcuzMax&lsquo;ta
                       <big>{price} TL</big>
                     </div>
                   </div>
@@ -77,14 +82,14 @@ class GridItem extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-3 align-self-end">
+              <div className="col-12 col-sm-3 pt-5 pt-sm-0 align-self-end">
                 <div className="subscribers text-center d-flex flex-column justify-content-between align-items-center">
                   <SubscriberDegree tierPrice={tierPrice} subscriberCount={subscriberCount} />
                   <p className="mb-0 mt-4 mb-4">
                     Toplam Katılımcı <big>{subscriberCount} Kişi</big>!
                   </p>
                 </div>
-                <Link className="btn more" to={`/p/${slug}`}>
+                <Link className="btn more" to={link}>
                   AYRINTILARA BAKIN
                 </Link>
               </div>

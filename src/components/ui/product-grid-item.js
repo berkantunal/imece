@@ -38,15 +38,20 @@ class GridItem extends React.Component {
     const { price } = this.state;
 
     const previewImage = getPreviewImage(images);
+    const link = `/p/${slug}`;
 
     return (
       <div className={cls(className, extraClassName)}>
         <div className="list-item-content">
           <div className="list-item px-2 pt-2 pb-3">
             <div className="owner">{owner}</div>
-            <div className="title">{title}</div>
+            <div className="title">
+              <Link to={link}>{title}</Link>
+            </div>
             <div className="image my-3">
-              <img src={previewImage} alt={title} />
+              <Link to={link}>
+                <img src={previewImage} alt={title} />
+              </Link>
             </div>
             <div className="detail">
               <div className="location">
@@ -59,7 +64,7 @@ class GridItem extends React.Component {
                   <span className="line-through">{oldPrice} TL</span>
                 </div>
                 <div className="discounted-price">
-                  imece fiyatı
+                  UcuzMax&lsquo;ta
                   <big>{price} TL</big>
                 </div>
               </div>

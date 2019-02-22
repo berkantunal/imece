@@ -1,0 +1,81 @@
+:global {
+  @import '~react-credit-cards/es/styles-compiled.css';
+}
+
+.checkout-form {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #cfd4da;
+}
+
+.cc-input > div {
+  display: block;
+}
+
+.cc-input #field-wrapper {
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 0;
+  border-color: #cfd4da;
+}
+
+.cc-input #field-wrapper label {
+  height: 30px;
+  margin: 0;
+}
+
+.checkout-form .form-check-input {
+  display: none;
+}
+
+.checkout-form .form-check-input + label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkout-form .form-check-input + label:before {
+  content: "\F00C";
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
+  border: 1px solid #cfd4da;
+  background: #fff;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #4CAF50;
+  font-size: 0px;
+  line-height: 25px;
+  text-align: center;
+  transition: 150ms;
+}
+
+.checkout-form .form-check-input:checked + label:before {
+  font-size: 12px;
+}
+
+.checkout-form .error-list {
+
+}
+
+.checkout-form .error-list li:before {
+  content: "\F00D";
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  line-height: 12px;
+  margin: 0 10px 0 0;
+}
+
+.checkout-form .error-list li {
+  font-size: 14px;
+  color: #e91e1e;
+  width: 50%;
+  display: flex;
+  align-items: center;
+}

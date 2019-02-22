@@ -7,7 +7,7 @@ import Social from '$/components/common/social';
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Title } from '$/components/ui/';
+import { Button, Title } from '$/components/ui/';
 import _ from 'lodash';
 
 import '$/assets/css/category.css';
@@ -19,6 +19,7 @@ class Category extends React.Component {
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
     this.state = {
       filter: {},
+      filterShow: false,
       key: 0
     };
   }
@@ -45,10 +46,19 @@ class Category extends React.Component {
     this.setCategoryAndFilter(filter);
   };
 
+  handleChangeFilterShowToggle = () => {
+    const { filterShow } = this.state;
+
+    this.setState({
+      ...this.state,
+      filterShow: !filterShow
+    });
+  };
+
   render() {
     const { location, product } = this.props;
     const url = _.get(location, 'pathname') + _.get(location, 'search');
-    const { currentCategory, filter } = this.state;
+    const { currentCategory, filter, filterShow } = this.state;
 
     return (
       <div className="main-container">
@@ -68,17 +78,27 @@ class Category extends React.Component {
                   </Title>
                 </div>
               </div>
-              <div className="col-3">
-                <SideBar url={url} handleChangeFilter={this.handleChangeFilter} />
+              <div className="col-12 col-md-3">
+                <div className="d-block d-sm-none pb-0 pb-sm-0">
+                  <Button
+                    extraClassName="btn-orange w-100"
+                    onClick={() => this.handleChangeFilterShowToggle()}
+                  >
+                    {filterShow ? 'Filtreyi Kapat' : 'Ürün Filtresi'}
+                  </Button>
+                </div>
+                <div className={`d-${filterShow ? 'block' : 'none'} d-sm-block pb-3 pb-sm-0`}>
+                  <SideBar url={url} handleChangeFilter={this.handleChangeFilter} />
+                </div>
               </div>
-              <div className="col-9">
+              <div className="col-12 col-md-9">
                 <List filter={JSON.stringify(filter)} />
               </div>
             </div>
           </div>
         </div>
         <div className="container">
-          <ProductSlider title="YENİ BAŞLAYAN İMECELER" />
+          <ProductSlider title="YENİ BAŞLAYAN ÜRÜNLER" />
         </div>
         <div className="orange-bg">
           <div className="container">

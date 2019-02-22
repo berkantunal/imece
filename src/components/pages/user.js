@@ -8,6 +8,7 @@ import _ from 'lodash';
 import Favorites from './user/favorites';
 import Information from './user/information';
 import Products from './user/products';
+import Logout from './user/logout';
 
 import '$/assets/css/user.css';
 
@@ -26,6 +27,9 @@ const User = props => {
     case 'products':
       children = <Products {...props} />;
       break;
+    case 'logout':
+      children = <Logout {...props} />;
+      break;
     default:
       children = <Information {...props} />;
       break;
@@ -37,14 +41,14 @@ const User = props => {
       <div className="gray-bg">
         <div className="container">
           <div className="row justify-content-stretch">
-            <div className="col-3">
+            <div className="col-12 col-sm-3">
               <div className="my-4 p-2 user-card">
                 <img
-                  className="mb-2"
+                  className="d-none d-sm-block mb-2"
                   src="https://via.placeholder.com/300x300.png?text=Profil"
                   alt="User"
                 />
-                <ul className="list-unstyled mt-2 nav flex-column">
+                <ul className="list-unstyled mt-0 mt-sm-2 nav flex-column">
                   <li>
                     <Link className="nav-link" to="/user/favorites">
                       Favorilerim
@@ -68,7 +72,7 @@ const User = props => {
                 </ul>
               </div>
             </div>
-            <div className="col-9">{children}</div>
+            <div className="col-12 col-sm-9">{children}</div>
           </div>
         </div>
       </div>

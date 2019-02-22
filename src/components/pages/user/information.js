@@ -106,7 +106,7 @@ class UserInformation extends React.Component {
             <Input value={user.email} readOnly title="E-mail Adresi" />
             <div className="row">
               <Input
-                extraClassName="col-6"
+                extraClassName="col-12 col-sm-6"
                 type="password"
                 title="Şifre"
                 name="password"
@@ -114,7 +114,7 @@ class UserInformation extends React.Component {
                 onChange={this.handleChange}
               />
               <Input
-                extraClassName="col-6"
+                extraClassName="col-12 col-sm-6"
                 type="password"
                 title="Şifre Tekrar"
                 name="passwordRepeat"
@@ -123,7 +123,7 @@ class UserInformation extends React.Component {
               />
             </div>
             <hr />
-            <div className="buttons d-flex justify-content-end">
+            <div className="buttons d-flex justify-content-end pb-4">
               <Button
                 loading={loading}
                 extraClassName="btn-orange btn-lg"

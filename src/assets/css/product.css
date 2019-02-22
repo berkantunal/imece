@@ -39,6 +39,10 @@
   margin-left: 5px;
 }
 
+.product-content .tier-price big {
+  font-size: 26px;
+}
+
 .product-content .subscriber-icons i {
   font-size: 36px;
   margin: 0 4px 0 0;

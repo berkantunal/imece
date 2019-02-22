@@ -48,17 +48,17 @@ const Footer = () => {
         <div className="container">
           <div className="pt-5 pb-4">
             <div className="row">
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <FooterList title="Gizlilik ve Kullanım" links={footerLinks1} />
               </div>
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <FooterList title="Hizmetlerimiz" links={footerLinks2} />
               </div>
-              <div className="col-4">
+              <div className="col-12 col-md-4">
                 <div className="footer-contact pt-3 white">
                   <p>
                     Destek Merkezi <br />
-                    <Link to="/yardim">maxcepte.com/yardim</Link>
+                    <Link to="/yardim">ucuzmax.com/yardim</Link>
                   </p>
                   <p>
                     7/24 Müşteri Hizmetleri <br />
@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="copyright py-3 white">Copyright &copy; 2015 maxcepte.com</div>
+      <div className="copyright py-3 white">Copyright &copy; 2015 UcuzMax.com</div>
     </footer>
   );
 };

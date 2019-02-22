@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import scrollToElement from 'scroll-to-element';
 import ProductImages from './images';
-import { Button, Title, SubscriberDegree } from '$/components/ui';
+import { Link, Title, SubscriberDegree } from '$/components/ui';
 import { getDateDiff, jsonDecode } from '$/helpers/';
 
 import '$/assets/css/product.css';
 
 const ProductView = props => {
+  scrollToElement('.main-container', {
+    duration: 100
+  });
+
   const { product } = props;
   const finishDate = getDateDiff(product.finishDate);
   const tierPrice = jsonDecode(product.tierPrice);
@@ -15,29 +20,39 @@ const ProductView = props => {
     <div className="product-view">
       <div className="product-content pb-5">
         <div className="row">
-          <div className="col-5">{product.images && <ProductImages images={product.images} />}</div>
-          <div className="col-7">
-            <div className="w-100 pb-4 d-flex justify-content-between align-items-center">
+          <div className="col-12 col-sm-5">
+            {product.images && <ProductImages images={product.images} />}
+          </div>
+          <div className="col-12 col-sm-7">
+            <div className="w-100 pb-4 d-flex flex-column flex-sm-row justify-content-between align-items-center">
               <div className="price">
-                imece fiyatı
-                <span className="line-through ml-1">{product.oldPrice} TL</span>
+                <span className="line-through mr-1">{product.oldPrice} TL</span>
+                UcuzMax fiyatı
               </div>
               <div className="tier-price-content">
                 {tierPrice.map(priceOpt => (
                   <div className="tier-price">
-                    {priceOpt.requiredUserCount} kişiye kadar <big>{priceOpt.price} TL</big>
+                    {priceOpt.requiredUserCount} kişiye kadar
+                    <big className="ml-1">
+                      <strong>{priceOpt.price} TL</strong>
+                    </big>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="d-flex justify-centent-between align-items-center">
-              <div className="w-100">
+            <div className="d-flex flex-wrap flex-sm-nowrap justify-centent-between align-items-center">
+              <div className="w-100 pr-0 pr-md-5 pr-lg-0 pb-5 pb-sm-0">
                 <SubscriberDegree tierPrice={tierPrice} subscriberCount={product.subscriberCount} />
               </div>
-              <Button extraClassName="btn-cart btn-lg">İmeceye Katıl</Button>
+              <Link
+                className="btn-cart btn-lg"
+                to={`/checkout/${product.slug}/${product.productId}`}
+              >
+                Ürüne Katıl
+              </Link>
             </div>
             <p className="py-3 mb-0 user-subscribtion-info">
-              Şu ana kadar imeceye {product.subscriberCount} kişi katıldı
+              Şu ana kadar ürüne {product.subscriberCount} kişi katıldı
             </p>
             <ul className="detail-list list-unstyled">
               <li className="d-flex">

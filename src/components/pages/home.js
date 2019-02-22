@@ -20,7 +20,7 @@ const Home = () => (
       </div>
     </div>
     <div className="container">
-      <ProductSlider title="YENİ BAŞLAYAN İMECELER" />
+      <ProductSlider title="YENİ BAŞLAYAN ÜRÜNLER" />
     </div>
     <div className="orange-bg">
       <div className="container">

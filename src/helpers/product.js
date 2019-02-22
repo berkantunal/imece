@@ -14,3 +14,29 @@ export const getMaxRequiredUserCount = async tierPrice => {
 
   return price.requiredUserCount;
 };
+
+export const getCurrentPrice = (tierPrice, subscriberCount = 0) => {
+  if (!tierPrice) {
+    return false;
+  }
+
+  const decodedTierPrice = jsonDecode(tierPrice);
+  let lastPriceOpt = { requiredUserCount: 0 };
+  let currentPriceOpt = _.find(decodedTierPrice, priceOpt => {
+    if (
+      lastPriceOpt.requiredUserCount >= subscriberCount &&
+      subscriberCount < priceOpt.requiredUserCount
+    ) {
+      return true;
+    }
+
+    lastPriceOpt = priceOpt;
+    return false;
+  });
+
+  if (!currentPriceOpt) {
+    currentPriceOpt = { price: 0 };
+  }
+
+  return currentPriceOpt && currentPriceOpt.price ? currentPriceOpt.price : 0;
+};

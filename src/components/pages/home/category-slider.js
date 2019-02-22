@@ -28,6 +28,22 @@ class CategorySlider extends React.Component {
           settings={{
             arrows: true,
             infinite: true,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToScroll: 2,
+                  slidesToShow: 2
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToScroll: 1,
+                  slidesToShow: 1
+                }
+              }
+            ],
             slidesToScroll: 1,
             slidesToShow: 3,
             speed: 500
@@ -38,7 +54,7 @@ class CategorySlider extends React.Component {
               <Link to={this.getUrl(categoryRow)}>
                 <div className="d-flex flex-column align-items-center justify-content-center">
                   <div className="icon">
-                    <i className="fa fa-car" />
+                    <i className={categoryRow.icon ? categoryRow.icon : 'fa fa-car'} />
                   </div>
                   <Title type="h3" extraClassName="bold mt-3">
                     {categoryRow.title}

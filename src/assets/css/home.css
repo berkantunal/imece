@@ -109,3 +109,9 @@
 .social-link i {
   color: var(--orange);
 }
+
+@media (max-width: 768px) {
+  .main-slider .search {
+    width: 80%;
+  }
+}

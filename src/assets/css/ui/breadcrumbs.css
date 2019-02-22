@@ -17,3 +17,16 @@
   font-weight: bold;
   margin-right: 5px;
 }
+
+@media (max-width: 768px) {
+  .breadcrumbs {
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .breadcrumbs ul li a {
+    font-size: 12px;
+  }
+
+}

@@ -1,6 +1,8 @@
 .user-card {
   background: #fff;
   border: 1px solid #f1f1f1;
+  position: sticky;
+  top: 20px;
 }
 
 .user-card img {
@@ -22,18 +24,20 @@
   color: #fff;
 }
 
-.user-information .form .form-group {
-  display: flex;
-  align-items: center;
-}
+@media (min-width: 768px) {
+  .user-information .form .form-group {
+    display: flex;
+    align-items: center;
+  }
 
-.user-information .form .form-group label {
-  width: 150px;
-  margin: 0;
-}
+  .user-information .form .form-group label {
+    width: 150px;
+    margin: 0;
+  }
 
-.user-information .form .form-group .form-control {
-  width: calc(100% - 150px);
+  .user-information .form .form-group .form-control {
+    width: calc(100% - 150px);
+  }
 }
 
 .user-products .list-item-content .actions {

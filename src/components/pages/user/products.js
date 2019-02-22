@@ -117,7 +117,7 @@ class UserProducts extends React.Component {
               count={product.user.list.length}
               limit={product.user.list.length}
               products={product.user.list}
-              productGridItemClassName="col-4 mt-3"
+              productGridItemClassName="col-12 col-sm-6 col-lg-4 mt-3"
               handleRemove={this.handleRemove}
               handleUpdate={this.handleUpdate}
               grid

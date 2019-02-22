@@ -70,7 +70,7 @@ class UserFavorites extends React.Component {
             count={favoriteProductCount}
             limit={LIMIT}
             products={product.favoriteProducts.list}
-            productGridItemClassName="col-4 mt-3"
+            productGridItemClassName="col-12 col-sm-6 col-lg-4 mt-3"
             grid
           />
         </div>

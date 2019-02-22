@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
@@ -20,7 +18,7 @@ class ListPagination extends React.Component {
     const { count, limit } = this.props;
     let pageCount = count / limit;
 
-    if (pageCount.toFixed() == 'NaN') {
+    if (pageCount.toFixed() === 'NaN') {
       return false;
     }
 
@@ -35,28 +33,25 @@ class ListPagination extends React.Component {
 
   handlePrev() {
     const { activePageNumber, onChangePage } = this.props;
-
-    let pageNumber = activePageNumber - 1;
+    const pageNumber = activePageNumber - 1;
 
     if (pageNumber < 0) {
       return false;
     }
 
-    onChangePage(pageNumber);
-
+    return onChangePage(pageNumber);
   }
 
   handleNext() {
-    const { activePageNumber, count, onChangePage } = this.props;
+    const { activePageNumber, onChangePage } = this.props;
     const pageCount = this.getPageCount();
-
-    let pageNumber = activePageNumber + 1;
+    const pageNumber = activePageNumber + 1;
 
     if (pageNumber >= pageCount) {
       return false;
     }
 
-    onChangePage(pageNumber);
+    return onChangePage(pageNumber);
   }
 
   render() {
@@ -74,14 +69,16 @@ class ListPagination extends React.Component {
       <div className={cls(className, extraClassName)}>
         <nav>
           <ul className="pagination">
-            <li className={`page-item ${activePageNumber == 0 ? 'disabled' : ''}`}>
-              <Button extraClassName="page-link" onClick={() => onChangePage(0)}>
-                BAŞLANGIÇ
+            <li className={`page-item ${activePageNumber === 0 ? 'disabled' : ''}`}>
+              <Button extraClassName="page-link page-btn" onClick={() => onChangePage(0)}>
+                <i className="fas fa-angle-double-left d-block d-sm-none" />
+                <span className="d-none d-sm-block">BAŞLANGIÇ</span>
               </Button>
             </li>
-            <li className={`page-item ${activePageNumber == 0 ? 'disabled' : ''}`}>
-              <Button extraClassName="page-link" onClick={this.handlePrev}>
-                ÖNCEKİ
+            <li className={`page-item ${activePageNumber === 0 ? 'disabled' : ''}`}>
+              <Button extraClassName="page-link page-btn" onClick={this.handlePrev}>
+                <i className="fas fa-angle-left d-block d-sm-none" />
+                <span className="d-none d-sm-block">ÖNCEKİ</span>
               </Button>
             </li>
             {_.times(pageCount, pageNumber => {
@@ -100,14 +97,19 @@ class ListPagination extends React.Component {
                 </li>
               );
             })}
-            <li className={`page-item ${activePageNumber == (pageCount - 1) ? 'disabled' : ''}`}>
-              <Button extraClassName="page-link" onClick={this.handleNext}>
-                SONRAKİ
+            <li className={`page-item ${activePageNumber === pageCount - 1 ? 'disabled' : ''}`}>
+              <Button extraClassName="page-link page-btn" onClick={this.handleNext}>
+                <span className="d-none d-sm-block">SONRAKİ</span>
+                <i className="fas fa-angle-right d-block d-sm-none" />
               </Button>
             </li>
-            <li className={`page-item ${activePageNumber == (pageCount - 1) ? 'disabled' : ''}`}>
-              <Button extraClassName="page-link" onClick={() => onChangePage(pageCount - 1)}>
-                SON
+            <li className={`page-item ${activePageNumber === pageCount - 1 ? 'disabled' : ''}`}>
+              <Button
+                extraClassName="page-link page-btn"
+                onClick={() => onChangePage(pageCount - 1)}
+              >
+                <span className="d-none d-sm-block">SON</span>
+                <i className="fas fa-angle-double-right d-block d-sm-none" />
               </Button>
             </li>
           </ul>

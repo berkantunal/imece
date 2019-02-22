@@ -122,10 +122,13 @@ class Product extends React.Component {
                       onClick={this.handleFavorite}
                     >
                       <i className="fa fa-star" />{' '}
-                      {favorite ? 'Favorilerimden Çıkar' : 'Favorilerime Ekle'}
+                      <span className="d-none d-sm-inline-block ml-2">
+                        {favorite ? 'Favorilerimden Çıkar' : 'Favorilerime Ekle'}
+                      </span>
                     </Button>
                     <Button extraClassName="btn-default btn-sm">
-                      <i className="fa fa-share-alt" /> Paylaş
+                      <i className="fa fa-share-alt" />
+                      <span className="d-none d-sm-inline-block ml-2">Paylaş</span>
                     </Button>
                   </div>
                 </div>
@@ -135,7 +138,7 @@ class Product extends React.Component {
           </div>
         ) : null}
         <div className="container">
-          <ProductSlider title="TAVSİYE EDİLEN İMECELER" />
+          <ProductSlider title="TAVSİYE EDİLEN ÜRÜNLER" />
         </div>
         <div className="orange-bg">
           <div className="container">

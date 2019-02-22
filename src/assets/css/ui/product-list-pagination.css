@@ -16,3 +16,13 @@
   background-color: var(--orange);
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .list-pagination .pagination .page-item .page-link {
+    margin: 0;
+  }
+
+  .page-btn span i {
+    font-size: 15px;
+  }
+}

@@ -101,7 +101,7 @@ List.defaultProps = {
   activePageNumber: 0,
   className: 'list-content',
   limit: 8,
-  productGridItemClassName: 'col-3 mt-3',
+  productGridItemClassName: 'col-12 col-sm-6 col-lg-3 mt-3',
   productListItemClassName: 'col-12 mt-3',
   products: [],
   toolbar: false

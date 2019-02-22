@@ -39,7 +39,7 @@ class SubscriberDegree extends React.Component {
     return (
       <div className="subscriber-degree">
         <div className="point">
-          <span>{maxRequiredUserCount}</span>
+          <span>0</span>
         </div>
         {_.map(decodedTierPrice, (priceOpt, key) => (
           <div className="point" key={key}>

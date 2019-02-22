@@ -9,16 +9,21 @@ import '$/assets/css/ui/slider-product-item.css';
 const SliderProductItem = props => {
   const { className, extraClassName, product } = props;
   const { title, owner, images, slug } = product;
+  const link = `/p/${slug}`;
 
   return (
     <div className={cls(className, extraClassName)}>
       <div className="image">
-        <img src={getPreviewImage(images)} alt={title} />
+        <Link to={link}>
+          <img src={getPreviewImage(images)} alt={title} />
+        </Link>
       </div>
       <div className="detail px-3 py-2">
         <div className="owner">{owner}</div>
-        <div className="title">{title}</div>
-        <Link className="more" to={`/p/${slug}`}>
+        <div className="title">
+          <Link to={link}>{title}</Link>
+        </div>
+        <Link className="more" to={link}>
           <i className="fa fa-angle-right" />
         </Link>
       </div>

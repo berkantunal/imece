@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '$/assets/img/react.svg';
+import logo from '$/assets/img/logo.png';
 import { Link } from '$/components/ui/';
 import Navigation from './navigation';
 
@@ -12,9 +12,8 @@ const Header = () => {
         <div className="container">
           <div className="row justify-content-between">
             <div className="col-4">
-              <Link className="logo d-flex py-2 align-items-center" to="/">
-                <img src={logo} className="mr-2" alt="Max Cepte" />
-                Max Cepte
+              <Link className="logo d-flex align-items-center" to="/">
+                <img src={logo} className="mr-2" alt="Ucuz Max" />
               </Link>
             </div>
             <div className="col-6">

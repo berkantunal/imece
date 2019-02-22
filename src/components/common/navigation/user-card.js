@@ -1,9 +1,7 @@
-/* eslint-disable */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, Button } from '$/components/ui/';
+import { Link } from '$/components/ui/';
 import { Dropdown } from 'react-bootstrap';
 import { setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
 
@@ -20,12 +18,8 @@ const UserCard = props => {
     <div className="user-card-navigation" key={user.userId}>
       <Dropdown>
         <Dropdown.Toggle className="d-flex align-items-center" id="dropdown-basic">
-          <img
-            className="mr-2"
-            src="https://via.placeholder.com/40x40.png?text=40x40"
-            alt="User"
-          />
-        {`${user.firstName} ${user.lastName}`}
+          <img className="mr-2" src="https://via.placeholder.com/40x40.png?text=40x40" alt="User" />
+          {`${user.firstName} ${user.lastName}`}
         </Dropdown.Toggle>
         <Dropdown.Menu>
           <Link className="dropdown-item" activeClassName="" to="/user/favorites">
@@ -44,7 +38,7 @@ const UserCard = props => {
       </Dropdown>
     </div>
   );
-}
+};
 
 UserCard.propTypes = {
   user: PropTypes.object

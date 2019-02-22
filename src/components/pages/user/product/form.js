@@ -7,7 +7,7 @@ import _ from 'lodash';
 import TierPrice from './form/tier-price';
 import ProductView from '$/components/pages/product/view';
 import Image from './form/image';
-import { Alert, Input, Button, Title, Textarea } from '$/components/ui';
+import { Alert, Input, Button, Select, Title, Textarea } from '$/components/ui';
 import { getCategories } from '$/store/actions/product-category';
 import { getUsersProductList, createProduct, updateProduct } from '$/store/actions/product';
 
@@ -23,21 +23,13 @@ class UserProductForm extends React.Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    let form = props.formData;
     const {
       user: { user }
-    } = props;
+    } = this.props;
 
-    if (!form.title) {
-      form = {
-        description: 'test',
-        images: ['imece-sepeti2.jpg', 'imece-sepeti-urunici.jpg'],
-        location: 'test',
-        oldPrice: 123,
-        owner: 'test test',
-        productCategoryId: 1,
-        shortDescription: 'test',
-        slug: 'fixed_buttons',
+    this.state = {
+      activeTab: 0,
+      form: props.formData || {
         tierPrice: [
           {
             price: 1349.99,
@@ -48,17 +40,8 @@ class UserProductForm extends React.Component {
             requiredUserCount: 25
           }
         ],
-        title: 'fixed_buttons',
         userId: user.userId
-      };
-    }
-
-    // eslint-disable-next-line
-    console.log(form);
-
-    this.state = {
-      activeTab: 0,
-      form,
+      },
       loading: false,
       showError: false
     };
@@ -230,7 +213,7 @@ class UserProductForm extends React.Component {
   }
 
   render() {
-    const { category } = this.props;
+    const { category, city } = this.props;
     const { activeTab, form, showError, loading } = this.state;
 
     return (
@@ -263,9 +246,10 @@ class UserProductForm extends React.Component {
             {showError && <Alert closable>Lütfen kategori seçiniz.</Alert>}
             <div className="row category-list">
               {_.map(category.list, categoryRow => (
-                <div key={categoryRow.productCategoryId} className="col-sm-4 my-3">
+                <div key={categoryRow.productCategoryId} className="col-sm-6 col-lg-4 my-3">
                   <div
                     className={`category-list-item p-3 ${
+                      form.productCategoryId &&
                       form.productCategoryId.toString() === categoryRow.productCategoryId.toString()
                         ? 'active'
                         : ''
@@ -312,23 +296,23 @@ class UserProductForm extends React.Component {
               />
             </div>
             <div className="row">
-              <Input
-                extraClassName="col-6"
+              <Select
+                extraClassName="col-12 col-lg-6"
                 name="location"
                 title="Şehir"
                 value={form.location}
                 onChange={this.handleChange}
-                required
+                options={city.optionList}
               />
               <Input
-                extraClassName="col-3"
+                extraClassName="col-12 col-lg-3"
                 name="oldPrice"
                 title="İndirimsiz Fiyat"
                 value={form.oldPrice}
                 onChange={this.handleChange}
                 required
               />
-              <div className="form-group col-3">
+              <div className="form-group col-12 col-lg-3">
                 <label htmlFor="finishDate">
                   Son Katılım Tarihi
                   <em>*</em>
@@ -367,17 +351,20 @@ class UserProductForm extends React.Component {
             <Image limit={4} images={form.images} onChange={this.handleChangeImage} name="images" />
           </div>
           <div className={`tab-content tab-content-4 ${activeTab === 3 ? 'active' : ''}`}>
-            <div className="buttons d-flex mb-3 justify-content-between align-items-center">
-              <Button extraClassName="btn-lg" onClick={this.prevTab}>
-                <i className="fa fa-angle-left  mr-2" />
+            <div className="buttons d-flex flex-wrap flex-lg-nowrap mb-3 justify-content-between align-items-center">
+              <Button extraClassName="btn-lg col-6 col-lg-auto" onClick={this.prevTab}>
+                <i className="fa fa-angle-left mr-2" />
                 Geri
               </Button>
-              <Title type="h5" extraClassName="bold">
+              <Title
+                type="h5"
+                extraClassName="bold order-3 order-lg-auto col-12 col-lg-auto pt-4 pt-lg-0"
+              >
                 Ürününüz bu şekilde gözükecek.
               </Title>
               <Button
                 loading={loading}
-                extraClassName="btn-orange btn-lg"
+                extraClassName="btn-orange btn-lg col-6 col-lg-auto"
                 onClick={this.handleSubmit}
               >
                 Onayla
@@ -413,6 +400,7 @@ class UserProductForm extends React.Component {
 
 UserProductForm.propTypes = {
   category: PropTypes.object,
+  city: PropTypes.object,
   formData: PropTypes.object,
   getCategories: PropTypes.func,
   getUsersProductList: PropTypes.func,
@@ -423,6 +411,7 @@ UserProductForm.propTypes = {
 const mapStateToProps = state => {
   return {
     category: state.category,
+    city: state.city,
     user: state.user
   };
 };

@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.grid-item .owner a ,
+.grid-item .title a {
+  color: var(--dark-gray);
+}
+
 .grid-item .image {
   position: relative;
 }

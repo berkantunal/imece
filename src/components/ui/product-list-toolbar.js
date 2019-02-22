@@ -26,7 +26,7 @@ class ListToolbar extends React.Component {
       <div className={cls(className, extraClassName)}>
         <form>
           <div className="row justify-content-between">
-            <div className="col-4">
+            <div className="col-9 col-sm-4">
               <Select
                 options={[
                   {
@@ -45,8 +45,8 @@ class ListToolbar extends React.Component {
                 inputExtraClassName="py-0 pl-5"
               />
             </div>
-            <div className="col-4 d-flex justify-content-end align-items-center">
-              <label htmlFor="list-style" className="mb-0 mr-3">
+            <div className="col-3 col-sm-4 d-flex justify-content-end align-items-center">
+              <label htmlFor="list-style" className="mb-0 mr-3 d-none d-sm-block">
                 Gösterim Şekli
               </label>
               <Button

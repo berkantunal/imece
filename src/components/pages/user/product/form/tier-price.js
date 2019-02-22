@@ -74,7 +74,7 @@ class UserProductFormTierPrice extends React.Component {
         </div>
         <div className="price-list row">
           {_.map(value, (tierPrice, key) => (
-            <div key={key} className="col-sm-6">
+            <div key={key} className="col-lg-6">
               <div className="price-list-item d-flex align-items-center mb-3">
                 <input
                   type="text"

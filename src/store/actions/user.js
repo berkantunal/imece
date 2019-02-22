@@ -9,6 +9,7 @@ export const SIGNUP_REJECTED = 'SIGNUP_REJECTED';
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_FULFILLED = 'LOGIN_FULFILLED';
 export const LOGIN_REJECTED = 'LOGIN_REJECTED';
+export const SET_LOGOUT = 'SET_LOGOUT';
 export const SET_FAVORITES_PENDING = 'SET_FAVORITES_PENDING';
 export const SET_FAVORITES_FULFILLED = 'SET_FAVORITES_FULFILLED';
 export const SET_FAVORITES_REJECTED = 'SET_FAVORITES_REJECTED';
@@ -38,6 +39,14 @@ export function login(form) {
         .post(`user/login`, form)
         .then(res => res.data),
       type: 'LOGIN'
+    });
+  };
+}
+
+export function logout() {
+  return dispatch => {
+    dispatch({
+      type: SET_LOGOUT
     });
   };
 }

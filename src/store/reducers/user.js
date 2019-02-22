@@ -7,6 +7,7 @@ import {
   LOGIN_PENDING,
   LOGIN_FULFILLED,
   LOGIN_REJECTED,
+  SET_LOGOUT,
   SET_FAVORITES_PENDING,
   SET_FAVORITES_FULFILLED,
   SET_FAVORITES_REJECTED
@@ -84,6 +85,13 @@ export default (state = initialState, action) => {
         isLoggedIn: false,
         loginError: true,
         loginLoading: false
+      };
+    case SET_LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        token: null,
+        user: {}
       };
     case SET_FAVORITES_PENDING:
       return {

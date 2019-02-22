@@ -33,6 +33,7 @@ a {
 
 a:hover {
   color: var(--default-color);
+  text-decoration: none;
 }
 
 a.link {
@@ -53,6 +54,10 @@ a.underline {
 
 .orange-bg {
   background-color: var(--orange);
+}
+
+.orange {
+  color: var(--orange);
 }
 
 .gray-bg {
@@ -132,4 +137,28 @@ label em {
   font-style: normal;
   color: #de3341;
   margin: 0 0 0 5px
+}
+
+.main-container .gray-bg {
+  padding: 0 0 30px 0;
+}
+
+@media (max-width: 768px) {
+
+  .main-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .user-card-navigation .btn.dropdown-toggle {
+    font-size: 0px;
+  }
+
+  .user-card-navigation .btn.dropdown-toggle:after {
+    font-size: 22px;
+    margin: 0;
+    position: absolute;
+    right: 0;
+  }
+
 }
