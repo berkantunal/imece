@@ -4,11 +4,15 @@ import Header from '$/components/common/header';
 import Footer from '$/components/common/footer';
 import Social from '$/components/common/social';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Alert, Button, Title, Textarea, Input, Select } from '$/components/ui/';
-import { getProductBySlug } from '$/store/actions/product';
+import { getProductBySlug, setIncreaseProductSubscriber } from '$/store/actions/product';
+import { setOrder } from '$/store/actions/order';
+import { setProductSubscriber } from '$/store/actions/product-subscriber';
 import { getCurrentPrice } from '$/helpers/product';
+import Swal from 'sweetalert2';
 import _ from 'lodash';
 import Cards from 'react-credit-cards';
 
@@ -24,10 +28,23 @@ class Checkout extends React.Component {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      creditCard: {},
-      form: {},
+      creditCard: {
+        name: "test",
+        number: "1234567891111213",
+        expiry: "12/22",
+        cvc: "333"
+      },
+      form: {
+        firstName: "test",
+        lastName: "test",
+        phone: "123123",
+        location: "Ankara",
+        address: "Ankara",
+        agreement: true
+      },
       focused: null,
       loading: null,
+      redirect: false,
       showError: false
     };
   }
@@ -110,8 +127,13 @@ class Checkout extends React.Component {
     });
   };
 
-  handleSubmit() {
+  handleSubmit = async () => {
     const { creditCard, form } = this.state;
+    const product = this.getCurrentProduct();
+    const total = getCurrentPrice(product.tierPrice, product.subscriberCount);
+    const {
+      user: { user }
+    } = this.props;
 
     if (
       !form.firstName ||
@@ -132,17 +154,49 @@ class Checkout extends React.Component {
 
       return false;
     }
+    this.setState({
+      ...this.state,
+      loading: true
+    });
+
+    setOrder(user.userId, {
+      addressInformation: {
+        ...form
+      },
+      productId: product.productId,
+      total
+    }).then(response => {
+      if (response.success) {
+        setProductSubscriber(user.userId, {
+          orderId: response.orderId,
+          paid: true
+        });
+        setIncreaseProductSubscriber(product.productId);
+
+        Swal.fire({
+          confirmButtonText: 'Teşekkürler!',
+          title: 'Ödemeniz gerçekleştirildi! Teşekkürler'
+        });
+
+        this.setState({
+          ...this.state,
+          loading: false,
+          redirect: true
+        });
+      }
+    });
 
     return true;
   }
 
   render() {
-    const { creditCard, form, focused, loading, showError } = this.state;
+    const { creditCard, form, focused, loading, redirect, showError } = this.state;
     const { city } = this.props;
     const product = this.getCurrentProduct();
 
     return (
       <div className="main-container">
+        {redirect && <Redirect to={`/p/${product.slug}`} />}
         <Header />
         <div className="gray-bg">
           <div className="container">
@@ -329,6 +383,7 @@ class Checkout extends React.Component {
                           id="agreement"
                           name="agreement"
                           value="1"
+                          checked={form.agreement}
                           onChange={this.handleChange}
                         />
                         <label

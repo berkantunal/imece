@@ -99,6 +99,12 @@ export function getProductBySlug(slug = null) {
   };
 }
 
+export function setIncreaseProductSubscriber(productId = 0) {
+  return axios()
+    .put(`product/increase-subscriber/${productId}`)
+    .then(res => res.data);
+}
+
 export function createProduct(form) {
   return axios()
     .post(`product/`, form)
