@@ -111,7 +111,15 @@
 }
 
 @media (max-width: 768px) {
+  .main-slider {
+    margin: 0 0 38px 0;
+  }
+
   .main-slider .search {
-    width: 80%;
+    width: 100%;
+    bottom: -41px;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #aaa;
   }
 }

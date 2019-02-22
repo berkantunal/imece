@@ -30,11 +30,11 @@ class ListToolbar extends React.Component {
               <Select
                 options={[
                   {
-                    title: 'Yeni eklenen imceler',
+                    title: 'Yeni eklenen ürünler',
                     value: 'timestampHigh'
                   },
                   {
-                    title: 'Sona yakın imeceler',
+                    title: 'Sona yakın ürünler',
                     value: 'timestampLow'
                   }
                 ]}

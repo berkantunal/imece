@@ -72,8 +72,12 @@ const ProductView = props => {
                 <div className="value">{product.requiredUserCount - product.subscriberCount}</div>
               </li>
               <li className="d-flex">
-                <div className="title">İmece Bitişine Kalan Zaman:</div>
-                <div className="value">{finishDate.days}</div>
+                <div className="title">UcuzMax Bitişine Kalan Zaman:</div>
+                <div className="value">
+                  <big>
+                    <strong className="orange">{finishDate.days} Gün</strong>
+                  </big>
+                </div>
               </li>
             </ul>
           </div>

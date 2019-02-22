@@ -1,12 +1,15 @@
 import React from 'react';
 import { Slider } from '$/components/ui/';
 import Search from './slider/search';
+import { getImageLink } from '$/helpers/image';
 
 const HomeSlider = () => (
   <div className="main-slider">
     <Slider
       settings={{
         arrows: false,
+        autoplay: true,
+        autoplaySpeed: 5000,
         dots: false,
         infinite: true,
         slidesToScroll: 1,
@@ -16,28 +19,23 @@ const HomeSlider = () => (
     >
       <div className="slider-item">
         <picture>
-          <source
-            media="(min-width: 650px)"
-            srcSet="https://via.placeholder.com/1920x500.png?text=1920x500"
-          />
-          <source
-            media="(max-width: 650px)"
-            srcSet="https://via.placeholder.com/500x500.png?text=500x500"
-          />
-          <img src="https://via.placeholder.com/1920x500.png?text=1920x500" alt="Slider 1" />
+          <source media="(min-width: 650px)" srcSet={getImageLink('slider-1.jpg')} />
+          <source media="(max-width: 650px)" srcSet={getImageLink('slider-1-mobile.jpg')} />
+          <img src={getImageLink('slider-1.jpg')} alt="Slider 1" />
         </picture>
       </div>
       <div className="slider-item">
         <picture>
-          <source
-            media="(min-width: 650px)"
-            srcSet="https://via.placeholder.com/1920x500.png?text=1920x500"
-          />
-          <source
-            media="(max-width: 650px)"
-            srcSet="https://via.placeholder.com/500x500.png?text=500x500"
-          />
-          <img src="https://via.placeholder.com/1920x500.png?text=1920x500" alt="Slider 1" />
+          <source media="(min-width: 650px)" srcSet={getImageLink('slider-2.jpg')} />
+          <source media="(max-width: 650px)" srcSet={getImageLink('slider-2-mobile.jpg')} />
+          <img src={getImageLink('slider-2.jpg')} alt="Slider 2" />
+        </picture>
+      </div>
+      <div className="slider-item">
+        <picture>
+          <source media="(min-width: 650px)" srcSet={getImageLink('slider-3.jpg')} />
+          <source media="(max-width: 650px)" srcSet={getImageLink('slider-3-mobile.jpg')} />
+          <img src={getImageLink('slider-3.jpg')} alt="Slider 3" />
         </picture>
       </div>
     </Slider>

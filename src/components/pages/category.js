@@ -87,7 +87,9 @@ class Category extends React.Component {
                     {filterShow ? 'Filtreyi Kapat' : 'Ürün Filtresi'}
                   </Button>
                 </div>
-                <div className={`d-${filterShow ? 'block' : 'none'} d-sm-block pb-3 pb-sm-0`}>
+                <div
+                  className={`d-${filterShow ? 'block' : 'none'} sidebar d-sm-block pb-3 pb-sm-0`}
+                >
                   <SideBar url={url} handleChangeFilter={this.handleChangeFilter} />
                 </div>
               </div>

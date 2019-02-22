@@ -1,0 +1,26 @@
+.menu-content h2 {
+  position: relative;
+}
+
+.menu-content h2:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  left: 0px;
+  background: #e34e07;
+  margin: 2px 0 0 0;
+}
+
+.menu-content h2 span {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  padding-right: 15px;
+}
+
+.menu-content h4 {
+  margin: 20px 0 25px 0;
+}

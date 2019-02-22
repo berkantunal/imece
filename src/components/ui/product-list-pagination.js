@@ -26,6 +26,8 @@ class ListPagination extends React.Component {
 
     if (pageCount > fixedPageCount) {
       pageCount = fixedPageCount + 1;
+    } else {
+      pageCount = fixedPageCount;
     }
 
     return pageCount;

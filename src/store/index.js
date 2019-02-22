@@ -20,6 +20,7 @@ const configureStore = preloadedState => {
   store.subscribe(
     throttle(() => {
       setState({
+        menu: store.getState().menu,
         user: store.getState().user
       });
     }, 1000)

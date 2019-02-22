@@ -54,10 +54,10 @@ class HomeList extends React.Component {
       <div className="category-list">
         <div className="header py-3 pl-5">
           <Title type="h2" extraClassName="bold">
-            TÜM İMECELER
+            TÜM ÜRÜNLER
           </Title>
           <Title type="h6" extraClassName="sub">
-            İmece sepetinde toplam {product.count} adet kayıt bulundu.
+            UcuzMax sepetinde toplam {product.count} adet kayıt bulundu.
           </Title>
         </div>
         <ProductList

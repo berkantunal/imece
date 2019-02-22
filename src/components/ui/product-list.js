@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
+import scrollToElement from 'scroll-to-element';
 import _ from 'lodash';
 import { ProductListToolbar, ProductListItem, ProductGridItem, ProductListPagination } from '.';
 
@@ -28,6 +29,15 @@ class List extends React.Component {
     localStorage.setItem('gridType', gridType);
   };
 
+  handleChangePage = (pageId = 0) => {
+    const { onChangePage } = this.props;
+
+    setTimeout(() => {
+      scrollToElement('.list-content', { duration: 100 });
+    }, 500);
+    onChangePage(pageId);
+  };
+
   render() {
     let { gridType } = this.state;
     const {
@@ -41,7 +51,6 @@ class List extends React.Component {
       handleUpdate,
       limit,
       onChangeOrderBy,
-      onChangePage,
       products,
       productListItemClassName,
       productGridItemClassName,
@@ -87,7 +96,7 @@ class List extends React.Component {
         </div>
         <ProductListPagination
           activePageNumber={activePageNumber}
-          onChangePage={onChangePage}
+          onChangePage={this.handleChangePage}
           limit={limit}
           count={count}
           extraClassName="mt-4"
