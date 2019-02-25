@@ -33,7 +33,7 @@ class SubscriberDegree extends React.Component {
   render() {
     const { tierPrice, subscriberCount } = this.props;
     const { maxRequiredUserCount } = this.state;
-    const percentage = (100 / maxRequiredUserCount) * subscriberCount;
+    const rate = 100 / maxRequiredUserCount;
     const decodedTierPrice = jsonDecode(tierPrice);
 
     return (
@@ -42,12 +42,20 @@ class SubscriberDegree extends React.Component {
           <span>0</span>
         </div>
         {_.map(decodedTierPrice, (priceOpt, key) => (
-          <div className="point" key={key}>
+          <div
+            className="point"
+            style={{ width: `${rate * parseFloat(priceOpt.requiredUserCount)}%` }}
+            key={key}
+          >
             <span>{priceOpt.requiredUserCount}</span>
           </div>
         ))}
-        <div className="count" style={{ width: `${percentage}%` }} data-count={subscriberCount} />
-        <div className="count-mask" style={{ width: `${100 - percentage}%` }} />
+        <div
+          className="count"
+          style={{ width: `${rate * subscriberCount}%` }}
+          data-count={subscriberCount}
+        />
+        <div className="count-mask" style={{ width: `${100 - rate * subscriberCount}%` }} />
       </div>
     );
   }
