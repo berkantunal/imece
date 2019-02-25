@@ -15,7 +15,7 @@ export const jsonDecode = jsonObj => {
   return response;
 };
 
-export const getImageLink = image => `${API_IMAGE_BASE}${image}`;
+export const getImageLink = image => (image ? `${API_IMAGE_BASE}${image}` : DEFAULT_IMAGE);
 
 export const getImages = images => {
   let decodedImages = images;

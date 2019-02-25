@@ -35,7 +35,7 @@
     margin: 0;
   }
 
-  .user-information .form .form-group .form-control {
+  .user-information .form .form-group .input {
     width: calc(100% - 150px);
   }
 }

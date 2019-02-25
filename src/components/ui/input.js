@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cls from 'classnames';
 import MaskedInput from 'react-text-mask';
+import { getImageLink } from '$/helpers/image';
+
+import '$/assets/css/ui/input.css';
 
 const Input = props => {
   const {
@@ -34,6 +37,10 @@ const Input = props => {
     value
   };
 
+  if (inputOptions.type === 'file') {
+    delete inputOptions.value;
+  }
+
   return (
     <div className={cls(className, extraClassName)}>
       {title && (
@@ -42,7 +49,14 @@ const Input = props => {
           {required && <em>*</em>}
         </label>
       )}
-      {mask.length ? <MaskedInput {...inputOptions} /> : <input {...inputOptions} />}
+      <div className={`input input-${type} ${type === 'file' && value ? 'd-flex' : ''}`}>
+        {type === 'file' && value && (
+          <div className="preview mr-3">
+            <img src={getImageLink(value)} alt="Profile" />
+          </div>
+        )}
+        {mask.length ? <MaskedInput {...inputOptions} /> : <input {...inputOptions} />}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,8 @@
+.form-group .input.input-file .form-control {
+  padding-top: 4px;
+  padding-left: 4px;
+}
+
+.form-group .input .preview img {
+  height: 38px;
+}

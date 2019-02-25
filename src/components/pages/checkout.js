@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import Header from '$/components/common/header';
 import Footer from '$/components/common/footer';
 import Social from '$/components/common/social';
@@ -28,21 +26,9 @@ class Checkout extends React.Component {
     this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      creditCard: {
-        name: "test",
-        number: "1234567891111213",
-        expiry: "12/22",
-        cvc: "333"
-      },
-      form: {
-        firstName: "test",
-        lastName: "test",
-        phone: "123123",
-        location: "Ankara",
-        address: "Ankara",
-        agreement: true
-      },
+      creditCard: {},
       focused: null,
+      form: {},
       loading: null,
       redirect: false,
       showError: false
@@ -80,7 +66,7 @@ class Checkout extends React.Component {
     const { form } = this.state;
     const { checked, value, name, type } = event.target;
 
-    if (type == 'checkbox') {
+    if (type === 'checkbox') {
       form[name] = checked;
     } else {
       form[name] = value;
@@ -93,7 +79,6 @@ class Checkout extends React.Component {
       ...this.state,
       form
     });
-    console.log(form);
   };
 
   handleChangeCC = event => {
@@ -109,7 +94,7 @@ class Checkout extends React.Component {
       ...this.state,
       creditCard
     });
-  }
+  };
 
   handleFocus = event => {
     const { name } = event.target;
@@ -120,7 +105,7 @@ class Checkout extends React.Component {
     });
   };
 
-  handleBlur = event => {
+  handleBlur = () => {
     this.setState({
       ...this.state,
       focused: null
@@ -140,7 +125,7 @@ class Checkout extends React.Component {
       !form.lastName ||
       !form.phone ||
       !form.location ||
-      !form.address || 
+      !form.address ||
       !form.agreement ||
       !creditCard.name ||
       !creditCard.number ||
@@ -187,7 +172,7 @@ class Checkout extends React.Component {
     });
 
     return true;
-  }
+  };
 
   render() {
     const { creditCard, form, focused, loading, redirect, showError } = this.state;
@@ -207,17 +192,14 @@ class Checkout extends React.Component {
                     Ödeme
                   </Title>
                   <Title type="h6" extraClassName="sub">
-                    <strong className="orange">
-                      {product.title}
-                    </strong>{' '}
-                    ürünü için katılım ücreti{' '}
+                    <strong className="orange">{product.title}</strong>
+                    &nbsp;ürünü için katılım ücreti&nbsp;
                     <big>
                       <strong className="orange">
                         {getCurrentPrice(product.tierPrice, product.subscriberCount)}
                       </strong>
                     </big>
-                    {' '}
-                    TLdir.
+                    &nbsp;TLdir.
                   </Title>
                 </div>
                 <form className="checkout-form">
@@ -236,14 +218,14 @@ class Checkout extends React.Component {
                       value={form.lastName}
                       onChange={this.handleChange}
                     />
-                    <div class="col-12">
+                    <div className="col-12">
                       {showError && (!form.firstName || !form.lastName) && (
                         <Alert>Ad Soyad alanlarını doldurunuz.</Alert>
                       )}
                     </div>
                   </div>
                   <div className="row">
-                    <div class="col-6">
+                    <div className="col-6">
                       <Input
                         title="Telefon"
                         name="phone"
@@ -252,7 +234,7 @@ class Checkout extends React.Component {
                       />
                       {showError && !form.phone && <Alert>Lütfen telefon numaranızı girin.</Alert>}
                     </div>
-                    <div class="col-6">
+                    <div className="col-6">
                       <Select
                         title="Şehir"
                         name="location"
@@ -260,7 +242,9 @@ class Checkout extends React.Component {
                         onChange={this.handleChange}
                         options={city.optionList}
                       />
-                      {showError && !form.location && <Alert>Lütfen bulunduğunuz şehri seçin.</Alert>}
+                      {showError && !form.location && (
+                        <Alert>Lütfen bulunduğunuz şehri seçin.</Alert>
+                      )}
                     </div>
                   </div>
                   <Textarea
@@ -273,7 +257,7 @@ class Checkout extends React.Component {
                   <div className="row align-items-center justify-content-between">
                     <div className="col-12 col-sm-6">
                       <div className="row">
-                        <div class="col-12">
+                        <div className="col-12">
                           <Input
                             title="Ad Soyad"
                             name="name"
@@ -286,7 +270,7 @@ class Checkout extends React.Component {
                             <Alert>Lütfen kartın üzerindeki ad soyadı girin.</Alert>
                           )}
                         </div>
-                        <div class="col-12">
+                        <div className="col-12">
                           <Input
                             mask={[
                               /[1-9]/,
@@ -323,13 +307,7 @@ class Checkout extends React.Component {
                       </div>
                       <div className="row">
                         <Input
-                          mask={[
-                            /[1-9]/,
-                            /[1-9]/,
-                            '/',
-                            /[1-9]/,
-                            /[1-9]/,
-                          ]}
+                          mask={[/[1-9]/, /[1-9]/, '/', /[1-9]/, /[1-9]/]}
                           title="Ay / Yıl"
                           extraClassName="col-9"
                           name="expiry"
@@ -339,12 +317,7 @@ class Checkout extends React.Component {
                           onBlur={this.handleBlur}
                         />
                         <Input
-                          mask={[
-                            /[1-9]/,
-                            /[1-9]/,
-                            /[1-9]/,
-                            /[1-9]/,
-                          ]}
+                          mask={[/[1-9]/, /[1-9]/, /[1-9]/, /[1-9]/]}
                           title="CVC"
                           extraClassName="col-3"
                           name="cvc"
@@ -353,7 +326,7 @@ class Checkout extends React.Component {
                           onFocus={this.handleFocus}
                           onBlur={this.handleBlur}
                         />
-                        <div class="col-12">
+                        <div className="col-12">
                           {showError && (!creditCard.expiry || !creditCard.cvc) && (
                             <Alert>Lütfen son kullanma tarihini ve cvc numarasını girin.</Alert>
                           )}
@@ -362,19 +335,19 @@ class Checkout extends React.Component {
                     </div>
                     <div className="col-auto">
                       <div className="cc-input">
-                         <Cards
-                           number={creditCard.number || ''}
-                           name={creditCard.name || ''}
-                           expiry={creditCard.expiry || ''}
-                           cvc={creditCard.cvc || ''}
-                           focused={focused}
-                           placeholders={{ name: 'ADINIZ SOYADINIZ' }}
-                           locale={{ valid: 'AY / YIL' }}
+                        <Cards
+                          number={creditCard.number || ''}
+                          name={creditCard.name || ''}
+                          expiry={creditCard.expiry || ''}
+                          cvc={creditCard.cvc || ''}
+                          focused={focused}
+                          placeholders={{ name: 'ADINIZ SOYADINIZ' }}
+                          locale={{ valid: 'AY / YIL' }}
                         />
                       </div>
                     </div>
                   </div>
-                  <div  className="row justify-content-between align-items-center">
+                  <div className="row justify-content-between align-items-center">
                     <div className="col-12 col-sm-8">
                       <div className="form-group form-check py-3 pl-0 mb-0">
                         <input
@@ -386,10 +359,7 @@ class Checkout extends React.Component {
                           checked={form.agreement}
                           onChange={this.handleChange}
                         />
-                        <label
-                          className="form-check-label"
-                          for="agreement"
-                        >
+                        <label className="form-check-label" htmlFor="agreement">
                           Gizlilik sözleşmesini okudum. Kabul ediyorum.
                         </label>
                       </div>
@@ -427,7 +397,8 @@ Checkout.propTypes = {
   city: PropTypes.object,
   getProductBySlug: PropTypes.func,
   match: PropTypes.object,
-  product: PropTypes.object
+  product: PropTypes.object,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => {

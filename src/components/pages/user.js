@@ -2,11 +2,15 @@ import Header from '$/components/common/header';
 import Footer from '$/components/common/footer';
 import Social from '$/components/common/social';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from '$/components/ui/';
+import { getImageLink } from '$/helpers/image';
 import _ from 'lodash';
 
 import Favorites from './user/favorites';
 import Information from './user/information';
+import PasswordChange from './user/password-change';
 import Products from './user/products';
 import Logout from './user/logout';
 
@@ -14,8 +18,7 @@ import '$/assets/css/user.css';
 
 const User = props => {
   const module = _.get(props, 'match.params.module');
-  // eslint-disable-next-line no-console
-  // console.log(props);
+
   let children;
   switch (module) {
     case 'favorites':
@@ -23,6 +26,9 @@ const User = props => {
       break;
     case 'information':
       children = <Information {...props} />;
+      break;
+    case 'password-change':
+      children = <PasswordChange {...props} />;
       break;
     case 'products':
       children = <Products {...props} />;
@@ -35,6 +41,10 @@ const User = props => {
       break;
   }
 
+  const {
+    user: { user }
+  } = props;
+
   return (
     <div className="main-container">
       <Header />
@@ -45,7 +55,7 @@ const User = props => {
               <div className="my-4 p-2 user-card">
                 <img
                   className="d-none d-sm-block mb-2"
-                  src="https://via.placeholder.com/300x300.png?text=Profil"
+                  src={getImageLink(user.profilePicture)}
                   alt="User"
                 />
                 <ul className="list-unstyled mt-0 mt-sm-2 nav flex-column">
@@ -62,6 +72,11 @@ const User = props => {
                   <li>
                     <Link className="nav-link" to="/user/information">
                       Hesap Bilgileri
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="nav-link" to="/user/password-change">
+                      Şifre Değiştir
                     </Link>
                   </li>
                   <li>
@@ -86,4 +101,14 @@ const User = props => {
   );
 };
 
-export default User;
+User.propTypes = {
+  user: PropTypes.object
+};
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+export default connect(mapStateToProps)(User);

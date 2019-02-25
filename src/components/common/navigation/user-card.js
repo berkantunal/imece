@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from '$/components/ui/';
 import { Dropdown } from 'react-bootstrap';
 import { setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
+import { getImageLink } from '$/helpers/image';
 
 import '$/assets/css/navigation.css';
 
@@ -18,7 +19,7 @@ const UserCard = props => {
     <div className="user-card-navigation" key={user.userId}>
       <Dropdown>
         <Dropdown.Toggle className="d-flex align-items-center" id="dropdown-basic">
-          <img className="mr-2" src="https://via.placeholder.com/40x40.png?text=40x40" alt="User" />
+          <img className="mr-2" src={getImageLink(user.profilePicture)} alt="User" />
           {`${user.firstName} ${user.lastName}`}
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -30,6 +31,9 @@ const UserCard = props => {
           </Link>
           <Link className="dropdown-item" activeClassName="" to="/user/information">
             Hesap Bilgileri
+          </Link>
+          <Link className="dropdown-item" activeClassName="" to="/user/password-change">
+            Şifre Değiştir
           </Link>
           <Link className="dropdown-item" activeClassName="" to="/user/logout">
             Çıkış

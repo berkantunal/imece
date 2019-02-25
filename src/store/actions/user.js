@@ -1,4 +1,5 @@
 import axios from '$/lib/axios';
+import { objectToFormData } from '$/helpers/form';
 
 export const LOGIN = 'LOGIN';
 export const SET_LOGIN_MODAL_VISIBILITY = 'SET_LOGIN_MODAL_VISIBILITY';
@@ -13,6 +14,10 @@ export const SET_LOGOUT = 'SET_LOGOUT';
 export const SET_FAVORITES_PENDING = 'SET_FAVORITES_PENDING';
 export const SET_FAVORITES_FULFILLED = 'SET_FAVORITES_FULFILLED';
 export const SET_FAVORITES_REJECTED = 'SET_FAVORITES_REJECTED';
+export const UPDATE_PENDING = 'UPDATE_PENDING';
+export const UPDATE_FULFILLED = 'UPDATE_FULFILLED';
+export const UPDATE_REJECTED = 'UPDATE_REJECTED';
+export const SET_UPDATE_STATUS = 'SET_UPDATE_STATUS';
 
 export function setSignupModalVisibility(value) {
   return dispatch => {
@@ -52,9 +57,25 @@ export function logout() {
 }
 
 export function updateUserInformation(userId, form) {
-  return axios()
-    .put(`user/${userId}`, form)
-    .then(res => res.data);
+  const formData = objectToFormData(form);
+
+  return dispatch => {
+    dispatch({
+      payload: axios()
+        .put(`user/${userId}`, formData)
+        .then(res => res.data),
+      type: 'UPDATE'
+    });
+  };
+}
+
+export function setUpdateStatus(status) {
+  return dispatch => {
+    dispatch({
+      payload: status,
+      type: SET_UPDATE_STATUS
+    });
+  };
 }
 
 export function signup(form) {

@@ -7,6 +7,10 @@ import {
   LOGIN_PENDING,
   LOGIN_FULFILLED,
   LOGIN_REJECTED,
+  UPDATE_PENDING,
+  UPDATE_FULFILLED,
+  UPDATE_REJECTED,
+  SET_UPDATE_STATUS,
   SET_LOGOUT,
   SET_FAVORITES_PENDING,
   SET_FAVORITES_FULFILLED,
@@ -20,12 +24,14 @@ const initialState = {
     setting: false
   },
   isLoggedIn: false,
-  loadingLoading: false,
+  loginLoading: false,
   loginModalVisibility: false,
   signedUp: false,
   signupLoading: false,
   signupModalVisibility: false,
   token: null,
+  updated: false,
+  updating: false,
   user: {}
 };
 
@@ -63,6 +69,30 @@ export default (state = initialState, action) => {
         signedUp: false,
         signupError: true,
         signupLoading: false
+      };
+    case UPDATE_PENDING:
+      return {
+        ...state,
+        updated: false,
+        updating: true
+      };
+    case UPDATE_FULFILLED:
+      return {
+        ...state,
+        updated: true,
+        updating: false,
+        user: action.payload.user
+      };
+    case UPDATE_REJECTED:
+      return {
+        ...state,
+        updated: action.payload.user,
+        updating: false
+      };
+    case SET_UPDATE_STATUS:
+      return {
+        ...state,
+        updated: false
       };
     case LOGIN_PENDING:
       return {

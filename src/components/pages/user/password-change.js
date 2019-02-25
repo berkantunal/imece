@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Alert, Breadcrumbs, Title, Input, Button } from '$/components/ui';
 import { updateUserInformation, setUpdateStatus } from '$/store/actions/user';
-import _ from 'lodash';
 
-class UserInformation extends React.Component {
+class PasswordChange extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,11 +17,8 @@ class UserInformation extends React.Component {
 
     this.state = {
       form: {
-        firstName: user.firstName,
-        lastName: user.lastName,
         profilePicture: user.profilePicture ? user.profilePicture : null
       },
-      loading: false,
       showError: false
     };
   }
@@ -39,19 +35,11 @@ class UserInformation extends React.Component {
 
   handleChange = event => {
     const { form } = this.state;
-    const { value, name, files, type } = event.target;
+    const { value, name } = event.target;
 
-    if (type === 'file') {
-      if (files.length) {
-        form[name] = _.first(files);
-      } else {
-        delete form[name];
-      }
-    } else {
-      form[name] = value;
-      if (!value) {
-        delete form[name];
-      }
+    form[name] = value;
+    if (!value) {
+      delete form[name];
     }
 
     this.setState({
@@ -66,7 +54,7 @@ class UserInformation extends React.Component {
       user: { user }
     } = this.props;
 
-    if (!form.firstName || !form.lastName) {
+    if (!form.password || !form.passwordRepeat || form.password !== form.passwordRepeat) {
       this.setState({
         ...this.state,
         showError: true
@@ -87,7 +75,7 @@ class UserInformation extends React.Component {
 
   render() {
     const {
-      user: { user, updated, updating }
+      user: { updated, updating }
     } = this.props;
     const { form, showError } = this.state;
 
@@ -108,29 +96,28 @@ class UserInformation extends React.Component {
         <div className="form">
           <form>
             {updated && <Alert type="success">Bilgileriniz güncellendi.</Alert>}
-            {showError && !form.firstName && <Alert>Lütfen ad alanını doldurunuz.</Alert>}
-            {showError && !form.lastName && <Alert>Lütfen soyad alanını doldurunuz.</Alert>}
-            <Input
-              type="file"
-              title="Profil"
-              name="profilePicture"
-              value={user.profilePicture}
-              onChange={this.handleChange}
-            />
-            <Input value={user.email} readOnly title="E-mail Adresi" />
+            {showError && !form.password && <Alert>Lütfen şifre alanını doldurunuz.</Alert>}
+            {showError && !form.passwordRepeat ? (
+              <Alert>Lütfen şifre tekrar alanını doldurunuz.</Alert>
+            ) : (
+              showError &&
+              form.password !== form.passwordRepeat && <Alert>Şifre alanları eşleşmiyor.</Alert>
+            )}
             <div className="row">
               <Input
                 extraClassName="col-12 col-sm-6"
-                title="Ad"
-                name="firstName"
-                value={form.firstName}
+                type="password"
+                title="Şifre"
+                name="password"
+                value={form.password}
                 onChange={this.handleChange}
               />
               <Input
                 extraClassName="col-12 col-sm-6"
-                title="Soyad"
-                name="lastName"
-                value={form.lastName}
+                type="password"
+                title="Şifre Tekrar"
+                name="passwordRepeat"
+                value={form.passwordRepeat}
                 onChange={this.handleChange}
               />
             </div>
@@ -151,7 +138,7 @@ class UserInformation extends React.Component {
   }
 }
 
-UserInformation.propTypes = {
+PasswordChange.propTypes = {
   setUpdateStatus: PropTypes.func,
   updateUserInformation: PropTypes.func,
   user: PropTypes.object
@@ -171,4 +158,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserInformation);
+)(PasswordChange);
