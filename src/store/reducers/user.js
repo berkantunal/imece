@@ -100,15 +100,29 @@ export default (state = initialState, action) => {
         isLoggedIn: false,
         loginLoading: true
       };
-    case LOGIN_FULFILLED:
+    case LOGIN_FULFILLED: {
+      const { success } = action.payload.data;
+
+      if (success) {
+        const { token, user } = action.payload.data;
+
+        return {
+          ...state,
+          isLoggedIn: true,
+          loginLoading: false,
+          loginModalVisibility: false,
+          token,
+          user
+        };
+      }
+
       return {
         ...state,
-        isLoggedIn: true,
-        loginLoading: false,
-        loginModalVisibility: false,
-        token: action.payload.token,
-        user: action.payload.user
+        isLoggedIn: false,
+        loginError: true,
+        loginLoading: false
       };
+    }
     case LOGIN_REJECTED:
       return {
         ...state,

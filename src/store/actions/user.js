@@ -37,12 +37,20 @@ export function setLoginModalVisibility(value) {
   };
 }
 
+export function emailControl(email) {
+  return axios()
+    .get(`user/email-control`, {
+      params: {
+        email
+      }
+    })
+    .then(response => response.data);
+}
+
 export function login(form) {
   return dispatch => {
     dispatch({
-      payload: axios()
-        .post(`user/login`, form)
-        .then(res => res.data),
+      payload: axios().post(`user/login`, form),
       type: 'LOGIN'
     });
   };

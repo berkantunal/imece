@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import { API_IMAGE_BASE } from '$/config/api';
 
+const ALLOWED_EXTENSIONS = ['jpg', 'png', 'jpeg', 'gif'];
+
 const DEFAULT_IMAGE = 'https://via.placeholder.com/250x150.png?text=250x150';
 
 export const jsonDecode = jsonObj => {
@@ -15,7 +17,21 @@ export const jsonDecode = jsonObj => {
   return response;
 };
 
-export const getImageLink = image => (image ? `${API_IMAGE_BASE}${image}` : DEFAULT_IMAGE);
+export const extensionControl = image => {
+  let isImage = false;
+
+  if (!image) {
+    return isImage;
+  }
+
+  isImage = _.find(ALLOWED_EXTENSIONS, ext => image.indexOf(`.${ext}`) > -1);
+
+  return isImage;
+};
+
+export const getImageLink = image => {
+  return image && extensionControl(image) ? `${API_IMAGE_BASE}${image}` : DEFAULT_IMAGE;
+};
 
 export const getImages = images => {
   let decodedImages = images;

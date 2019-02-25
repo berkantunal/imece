@@ -98,6 +98,7 @@ class UILogin extends React.Component {
       >
         {user.isLoggedIn && <Redirect to="/user/information" />}
         <form>
+          {user.loginError && <Alert>E-mail adresi veya şifre yanlış.</Alert>}
           <Input
             title="E-mail Adresi"
             name="email"

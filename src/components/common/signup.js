@@ -1,10 +1,17 @@
+/* eslint-disable */
+
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Alert, Input, Select, Button, Modal } from '$/components/ui/';
 import { getCities } from '$/store/actions/city';
-import { signup, setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
+import {
+  signup,
+  setLoginModalVisibility,
+  setSignupModalVisibility,
+  emailControl
+} from '$/store/actions/user';
 
 import '$/assets/css/header.css';
 
@@ -18,6 +25,7 @@ class UISignup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
+      emailExist: false,
       form: {},
       showError: false
     };
@@ -76,13 +84,22 @@ class UISignup extends React.Component {
       return false;
     }
 
-    this.props.signup(form);
+    emailControl(form.email).then(response => {
+      if (!response.exist) {
+        return this.props.signup(form);
+      }
+
+      return this.setState({
+        emailExist: response.exist
+      });
+    });
+
     return true;
   }
 
   render() {
     const { user, city } = this.props;
-    const { form, showError } = this.state;
+    const { emailExist, form, showError } = this.state;
 
     const footerButtons = (
       <div className="d-flex w-100">
@@ -130,6 +147,7 @@ class UISignup extends React.Component {
             value={form.email}
             onChange={this.handleChange}
           />
+          {emailExist && <Alert>E-mail adresi kullanılmaktadır.</Alert>}
           {showError && !form.email && <Alert>Lütfen bir e-mail adresi girin.</Alert>}
           <Input
             type="password"
