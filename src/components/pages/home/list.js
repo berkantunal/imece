@@ -65,6 +65,7 @@ class HomeList extends React.Component {
           activePageNumber={activePageNumber}
           onChangePage={this.handleChangePage}
           onChangeOrderBy={this.handleChangeOrderBy}
+          loading={product.loading}
           count={product.count}
           products={product.list}
         />

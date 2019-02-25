@@ -69,6 +69,7 @@ class UserFavorites extends React.Component {
             onChangePage={this.handleChangePage}
             count={favoriteProductCount}
             limit={LIMIT}
+            loading={product.favoriteProducts.loading}
             products={product.favoriteProducts.list}
             productGridItemClassName="col-12 col-sm-6 col-lg-4 mt-3"
             grid

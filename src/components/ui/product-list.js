@@ -39,6 +39,7 @@ class List extends React.Component {
   };
 
   render() {
+    let isLoading = null;
     let { gridType } = this.state;
     const {
       actions,
@@ -50,6 +51,7 @@ class List extends React.Component {
       handleRemove,
       handleUpdate,
       limit,
+      loading,
       onChangeOrderBy,
       products,
       productListItemClassName,
@@ -61,8 +63,12 @@ class List extends React.Component {
       gridType = 'grid';
     }
 
+    if (loading) {
+      isLoading = 'loading';
+    }
+
     return (
-      <div className={cls(className, extraClassName)}>
+      <div className={cls(className, extraClassName, isLoading)}>
         {toolbar && (
           <ProductListToolbar
             onChangeOrderBy={onChangeOrderBy}
@@ -126,6 +132,7 @@ List.propTypes = {
   handleRemove: PropTypes.func,
   handleUpdate: PropTypes.func,
   limit: PropTypes.number,
+  loading: PropTypes.bool,
   onChangeOrderBy: PropTypes.func,
   onChangePage: PropTypes.func,
   productGridItemClassName: PropTypes.string,

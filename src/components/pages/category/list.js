@@ -78,6 +78,7 @@ class CategoryList extends React.Component {
           activePageNumber={activePageNumber}
           onChangePage={this.handleChangePage}
           onChangeOrderBy={this.handleChangeOrderBy}
+          loading={product.loading}
           count={product.count}
           products={product.list}
           productGridItemClassName="col-12 col-sm-6 col-lg-4 mt-3"

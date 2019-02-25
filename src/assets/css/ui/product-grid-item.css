@@ -115,4 +115,48 @@
 
 .grid-item .subscriber-degree {
   width: 90%;
+  margin-top: 15px;
+}
+
+.list-content.loading .subscriber-degree .count:after,
+.list-content.loading .subscriber-degree ,
+.list-content.loading .subscriber-degree .point:after ,
+.list-content.loading .grid-item {
+  background: #efefef;
+}
+
+.list-content.loading .grid-item {
+  transition: 0ms;
+}
+
+.list-content.loading .grid-item .image:after,
+.list-content.loading .grid-item > * > * > * {
+  background: #e8e8e8;
+  color: #e8e8e8 !important;
+  pointer-events: none;
+}
+
+.list-content.loading .grid-item .detail .location,
+.list-content.loading .grid-item .detail .price,
+.list-content.loading .grid-item .detail .comments {
+  border-bottom: 1px solid #efefef;
+}
+
+.list-content.loading .grid-item .owner a,
+.list-content.loading .grid-item .title a,
+.list-content.loading .grid-item .detail .location i,
+.list-content.loading .grid-item .detail .price i,
+.list-content.loading .grid-item .detail .comments i ,
+.list-content.loading .grid-item .detail .price .discounted-price ,
+.list-content.loading .grid-item .detail .subscribers p big {
+  color: #e8e8e8 !important;
+}
+
+.list-content.loading .subscriber-degree {
+  border: 1px solid #efefef;
+}
+
+.list-content.loading .grid-item .image img,
+.list-content.loading .grid-item .detail .more {
+  opacity: 0;
 }
