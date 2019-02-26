@@ -9,6 +9,7 @@ import _ from 'lodash';
 import ProductView from './product/view';
 import { Button, Breadcrumbs, Title } from '$/components/ui';
 import { getProductBySlug } from '$/store/actions/product';
+import { getSubscribedProductList } from '$/store/actions/product-subscriber';
 import { setFavorites } from '$/store/actions/user';
 
 import '$/assets/css/product.css';
@@ -24,16 +25,21 @@ class Product extends React.Component {
   }
 
   componentDidMount() {
-    const { match } = this.props;
+    const {
+      match,
+      user: { user }
+    } = this.props;
     const slug = _.get(match, 'params.slug');
 
     this.props.getProductBySlug(slug);
+    // eslint-disable-next-line
+    console.log('getSubscribedProductList', user.userId);
+    this.props.getSubscribedProductList(user.userId);
   }
 
   componentDidUpdate(prevProps) {
     const { match: prevMatch } = prevProps;
     const prevSlug = _.get(prevMatch, 'params.slug');
-
     const { match } = this.props;
     const slug = _.get(match, 'params.slug');
 
@@ -96,6 +102,7 @@ class Product extends React.Component {
   render() {
     const product = this.getCurrentProduct();
     const { favorite } = this.state;
+    const { subscriber } = this.props;
 
     return (
       <div className="main-container" key={product ? product.productId : 0}>
@@ -133,7 +140,7 @@ class Product extends React.Component {
                   </div>
                 </div>
               </div>
-              <ProductView product={product} />
+              <ProductView product={product} subscribedProducts={subscriber.list} />
             </div>
           </div>
         ) : null}
@@ -153,21 +160,25 @@ class Product extends React.Component {
 
 Product.propTypes = {
   getProductBySlug: PropTypes.func,
+  getSubscribedProductList: PropTypes.func,
   match: PropTypes.object,
   product: PropTypes.object,
   setFavorites: PropTypes.func,
+  subscriber: PropTypes.object,
   user: PropTypes.object
 };
 
 const mapStateToProps = state => {
   return {
     product: state.product,
+    subscriber: state.subscriber,
     user: state.user
   };
 };
 
 const mapDispatchToProps = {
   getProductBySlug,
+  getSubscribedProductList,
   setFavorites
 };
 

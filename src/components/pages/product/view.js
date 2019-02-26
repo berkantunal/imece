@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
+import _ from 'lodash';
 import ProductImages from './images';
 import { Link, Title, SubscriberDegree } from '$/components/ui';
 import { getDateDiff, jsonDecode } from '$/helpers/';
@@ -12,9 +13,16 @@ const ProductView = props => {
     duration: 100
   });
 
-  const { product } = props;
+  const { product, subscribedProducts } = props;
   const finishDate = getDateDiff(product.finishDate);
   const tierPrice = jsonDecode(product.tierPrice);
+  const daysLeft = product.requiredUserCount - product.subscriberCount;
+
+  const isSubscribed = _.find(subscribedProducts, {
+    Order: {
+      productId: product.productId
+    }
+  });
 
   return (
     <div className="product-view">
@@ -44,12 +52,21 @@ const ProductView = props => {
               <div className="w-100 pr-0 pr-md-5 pr-lg-0 pb-5 pb-sm-0">
                 <SubscriberDegree tierPrice={tierPrice} subscriberCount={product.subscriberCount} />
               </div>
-              <Link
-                className="btn-cart btn-lg"
-                to={`/checkout/${product.slug}/${product.productId}`}
-              >
-                Ürüne Katıl
-              </Link>
+              <div>
+                {daysLeft <= 0 && <p>Katılım süresi bitti</p>}
+                {isSubscribed ? (
+                  <p className="orange">Katıldığınız için teşekkür Ederiz</p>
+                ) : (
+                  daysLeft > 0 && (
+                    <Link
+                      className="btn-cart btn-lg"
+                      to={`/checkout/${product.slug}/${product.productId}`}
+                    >
+                      Ürüne Katıl
+                    </Link>
+                  )
+                )}
+              </div>
             </div>
             <p className="py-3 mb-0 user-subscribtion-info">
               Şu ana kadar ürüne {product.subscriberCount} kişi katıldı
@@ -69,7 +86,7 @@ const ProductView = props => {
               </li>
               <li className="d-flex">
                 <div className="title">Kalan:</div>
-                <div className="value">{product.requiredUserCount - product.subscriberCount}</div>
+                <div className="value">{daysLeft || '0'}</div>
               </li>
               <li className="d-flex">
                 <div className="title">UcuzMax Bitişine Kalan Zaman:</div>
@@ -95,7 +112,8 @@ const ProductView = props => {
 };
 
 ProductView.propTypes = {
-  product: PropTypes.object
+  product: PropTypes.object.isRequired,
+  subscribedProducts: PropTypes.object
 };
 
 export default ProductView;

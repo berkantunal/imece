@@ -12,6 +12,7 @@ import Favorites from './user/favorites';
 import Information from './user/information';
 import PasswordChange from './user/password-change';
 import Products from './user/products';
+import Order from './user/order';
 import Logout from './user/logout';
 
 import '$/assets/css/user.css';
@@ -26,6 +27,9 @@ const User = props => {
       break;
     case 'information':
       children = <Information {...props} />;
+      break;
+    case 'order':
+      children = <Order {...props} />;
       break;
     case 'password-change':
       children = <PasswordChange {...props} />;
@@ -67,6 +71,11 @@ const User = props => {
                   <li>
                     <Link className="nav-link" to="/user/products">
                       Ürünlerim
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="nav-link" to="/user/order">
+                      Satın Alımlarım
                     </Link>
                   </li>
                   <li>

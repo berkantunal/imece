@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import subscriber from './product-subscriber';
 import category from './product-category';
 import city from './city';
 import user from './user';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   menu,
   order,
   product,
+  subscriber,
   user
 });
 

@@ -154,7 +154,7 @@ class Checkout extends React.Component {
       if (response.success) {
         setProductSubscriber(user.userId, {
           orderId: response.orderId,
-          paid: true
+          paid: 1
         });
         setIncreaseProductSubscriber(product.productId);
 
@@ -181,7 +181,7 @@ class Checkout extends React.Component {
 
     return (
       <div className="main-container">
-        {redirect && <Redirect to={`/p/${product.slug}`} />}
+        {redirect && <Redirect to="/user/order" />}
         <Header />
         <div className="gray-bg">
           <div className="container">
