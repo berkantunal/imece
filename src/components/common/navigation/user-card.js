@@ -29,7 +29,7 @@ const UserCard = props => {
           <Link className="dropdown-item" activeClassName="" to="/user/products">
             Ürünlerim
           </Link>
-          <Link className="dropdown-item" activeClassName="" to="/user/orders">
+          <Link className="dropdown-item" activeClassName="" to="/user/order">
             Satın Alımlarım
           </Link>
           <Link className="dropdown-item" activeClassName="" to="/user/information">
