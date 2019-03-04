@@ -61,10 +61,6 @@ class UILogin extends React.Component {
         ...this.state,
         showError: true
       });
-      // eslint-disable-next-line
-      // console.log('showError', form.password + ' || ' + form.passwordRepeat + ' || ' + form.password + ' !== ' + form.passwordRepeat);
-      // eslint-disable-next-line
-      // console.log('showError', !(form.password === form.passwordRepeat));
 
       return false;
     }

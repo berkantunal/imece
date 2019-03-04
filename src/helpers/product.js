@@ -35,8 +35,10 @@ export const getCurrentPrice = (tierPrice, subscriberCount = 0) => {
   });
 
   if (!currentPriceOpt) {
-    currentPriceOpt = { price: 0 };
+    currentPriceOpt = lastPriceOpt;
   }
 
   return currentPriceOpt && currentPriceOpt.price ? currentPriceOpt.price : 0;
 };
+
+export const getPrice = (price, payRate) => (price / 100) * payRate;

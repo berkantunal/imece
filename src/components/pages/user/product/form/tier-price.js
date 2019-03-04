@@ -25,7 +25,7 @@ class UserProductFormTierPrice extends React.Component {
       values
     });
 
-    this.props.handleChange(values);
+    this.triggerChange(values);
   };
 
   handleAdd = () => {
@@ -40,6 +40,8 @@ class UserProductFormTierPrice extends React.Component {
       ...this.state,
       value
     });
+
+    this.triggerChange(value);
   };
 
   handleRemove = key => {
@@ -50,9 +52,13 @@ class UserProductFormTierPrice extends React.Component {
       ...this.state,
       value: values
     });
-    // eslint-disable-next-line
-    console.log(values);
+
+    this.triggerChange(values);
   };
+
+  triggerChange(values) {
+    this.props.handleChange(values);
+  }
 
   render() {
     const { value } = this.state;

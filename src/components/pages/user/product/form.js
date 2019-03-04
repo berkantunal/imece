@@ -344,6 +344,16 @@ class UserProductForm extends React.Component {
                 required
               />
             </div>
+            <div className="row">
+              <Input
+                extraClassName="col-12"
+                name="payRate"
+                title="Ödeme Oranı"
+                value={form.payRate}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
             <TierPrice handleChange={this.handleChangeTierPrice} value={form.tierPrice} />
           </div>
           <div className={`tab-content tab-content-3 ${activeTab === 2 ? 'active' : ''}`}>

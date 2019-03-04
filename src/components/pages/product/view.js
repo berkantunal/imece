@@ -5,6 +5,7 @@ import _ from 'lodash';
 import ProductImages from './images';
 import { Link, Title, SubscriberDegree } from '$/components/ui';
 import { getDateDiff, jsonDecode } from '$/helpers/';
+import { getCurrentPrice, getPrice } from '$/helpers/product';
 
 import '$/assets/css/product.css';
 
@@ -16,7 +17,8 @@ const ProductView = props => {
   const { product, subscribedProducts } = props;
   const finishDate = getDateDiff(product.finishDate);
   const tierPrice = jsonDecode(product.tierPrice);
-  const daysLeft = product.requiredUserCount - product.subscriberCount;
+  const total = getCurrentPrice(product.tierPrice, product.subscriberCount);
+  const payRateTotal = getPrice(total, product.payRate);
 
   const isSubscribed = _.find(subscribedProducts, {
     Order: {
@@ -53,11 +55,11 @@ const ProductView = props => {
                 <SubscriberDegree tierPrice={tierPrice} subscriberCount={product.subscriberCount} />
               </div>
               <div>
-                {daysLeft <= 0 && <p>Katılım süresi bitti</p>}
+                {finishDate.days <= 0 && <p>Katılım süresi bitti</p>}
                 {isSubscribed ? (
                   <p className="orange">Katıldığınız için teşekkür Ederiz</p>
                 ) : (
-                  daysLeft > 0 && (
+                  finishDate.days > 0 && (
                     <Link
                       className="btn-cart btn-lg"
                       to={`/checkout/${product.slug}/${product.productId}`}
@@ -68,9 +70,14 @@ const ProductView = props => {
                 )}
               </div>
             </div>
-            <p className="py-3 mb-0 user-subscribtion-info">
-              Şu ana kadar ürüne {product.subscriberCount} kişi katıldı
-            </p>
+            <div className="d-flex justify-content-between">
+              <p className="py-3 mb-0 user-subscribtion-info">
+                Şu ana kadar ürüne {product.subscriberCount} kişi katıldı
+              </p>
+              <p className="py-3 mb-0 user-subscribtion-info bold orange">
+                Bu ürüne katılmak için sadece {payRateTotal} TL ödeceksiniz.
+              </p>
+            </div>
             <ul className="detail-list list-unstyled">
               <li className="d-flex">
                 <div className="title">İmece Firma:</div>
@@ -83,10 +90,6 @@ const ProductView = props => {
               <li className="d-flex">
                 <div className="title">Katılan:</div>
                 <div className="value">{product.subscriberCount}</div>
-              </li>
-              <li className="d-flex">
-                <div className="title">Kalan:</div>
-                <div className="value">{daysLeft || '0'}</div>
               </li>
               <li className="d-flex">
                 <div className="title">UcuzMax Bitişine Kalan Zaman:</div>

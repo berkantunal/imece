@@ -9,7 +9,7 @@ import { Alert, Button, Title, Textarea, Input, Select } from '$/components/ui/'
 import { getProductBySlug, setIncreaseProductSubscriber } from '$/store/actions/product';
 import { setOrder } from '$/store/actions/order';
 import { setProductSubscriber } from '$/store/actions/product-subscriber';
-import { getCurrentPrice } from '$/helpers/product';
+import { getCurrentPrice, getPrice } from '$/helpers/product';
 import Swal from 'sweetalert2';
 import _ from 'lodash';
 import Cards from 'react-credit-cards';
@@ -116,6 +116,8 @@ class Checkout extends React.Component {
     const { creditCard, form } = this.state;
     const product = this.getCurrentProduct();
     const total = getCurrentPrice(product.tierPrice, product.subscriberCount);
+    const payRateTotal = getPrice(total, product.payRate);
+
     const {
       user: { user }
     } = this.props;
@@ -148,13 +150,14 @@ class Checkout extends React.Component {
       addressInformation: {
         ...form
       },
-      productId: product.productId,
-      total
+      payRateTotal,
+      productId: product.productId
     }).then(response => {
       if (response.success) {
         setProductSubscriber(user.userId, {
           orderId: response.orderId,
-          paid: 1
+          paid: 1,
+          productId: product.productId
         });
         setIncreaseProductSubscriber(product.productId);
 
@@ -178,6 +181,8 @@ class Checkout extends React.Component {
     const { creditCard, form, focused, loading, redirect, showError } = this.state;
     const { city } = this.props;
     const product = this.getCurrentProduct();
+    const total = getCurrentPrice(product.tierPrice, product.subscriberCount);
+    const payRateTotal = getPrice(total, product.payRate);
 
     return (
       <div className="main-container">
@@ -195,9 +200,7 @@ class Checkout extends React.Component {
                     <strong className="orange">{product.title}</strong>
                     &nbsp;ürünü için katılım ücreti&nbsp;
                     <big>
-                      <strong className="orange">
-                        {getCurrentPrice(product.tierPrice, product.subscriberCount)}
-                      </strong>
+                      <strong className="orange">{payRateTotal}</strong>
                     </big>
                     &nbsp;TLdir.
                   </Title>
