@@ -4,6 +4,7 @@ import { objectToFormData } from '$/helpers/form';
 export const LOGIN = 'LOGIN';
 export const SET_LOGIN_MODAL_VISIBILITY = 'SET_LOGIN_MODAL_VISIBILITY';
 export const SET_SIGNUP_MODAL_VISIBILITY = 'SET_SIGNUP_MODAL_VISIBILITY';
+export const SET_FORGOT_PASSWORD_MODAL_VISIBILITY = 'SET_FORGOT_PASSWORD_MODAL_VISIBILITY';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_FULFILLED = 'SIGNUP_FULFILLED';
 export const SIGNUP_REJECTED = 'SIGNUP_REJECTED';
@@ -37,6 +38,15 @@ export function setLoginModalVisibility(value) {
   };
 }
 
+export function setForgotPasswordModalVisibility(value) {
+  return dispatch => {
+    dispatch({
+      payload: value,
+      type: SET_FORGOT_PASSWORD_MODAL_VISIBILITY
+    });
+  };
+}
+
 export function emailControl(email) {
   return axios()
     .get(`user/email-control`, {
@@ -44,6 +54,24 @@ export function emailControl(email) {
         email
       }
     })
+    .then(response => response.data);
+}
+
+export function forgotPassword(form) {
+  return axios()
+    .post(`user/forgot-password`, form)
+    .then(response => response.data);
+}
+
+export function changePassword(form) {
+  return axios()
+    .post(`user/change-password`, form)
+    .then(response => response.data);
+}
+
+export function confirmation(userId) {
+  return axios()
+    .post(`user/confirmation/${userId}`)
     .then(response => response.data);
 }
 

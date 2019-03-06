@@ -5,6 +5,7 @@ import UserNavigation from './navigation/user';
 import UserCardNavigation from './navigation/user-card';
 import Login from './login';
 import Signup from './signup';
+import ForgotPassword from './forgot-password';
 
 import '$/assets/css/navigation.css';
 
@@ -18,6 +19,7 @@ const Navigation = () => {
       </div>
       <Login />
       <Signup />
+      <ForgotPassword />
       <UserNavigation />
       <UserCardNavigation />
     </nav>

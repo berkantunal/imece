@@ -6,8 +6,6 @@ import { logout } from '$/store/actions/user';
 
 class UserLogout extends React.Component {
   componentDidMount() {
-    // eslint-disable-next-line
-    console.log('test');
     this.props.logout();
   }
 

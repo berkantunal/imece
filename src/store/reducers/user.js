@@ -1,6 +1,7 @@
 import {
   SET_SIGNUP_MODAL_VISIBILITY,
   SET_LOGIN_MODAL_VISIBILITY,
+  SET_FORGOT_PASSWORD_MODAL_VISIBILITY,
   SIGNUP_PENDING,
   SIGNUP_FULFILLED,
   SIGNUP_REJECTED,
@@ -23,6 +24,7 @@ const initialState = {
     setted: false,
     setting: false
   },
+  forgotPasswordModalVisibility: false,
   isLoggedIn: false,
   loginLoading: false,
   loginModalVisibility: false,
@@ -46,6 +48,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginModalVisibility: action.payload
+      };
+    case SET_FORGOT_PASSWORD_MODAL_VISIBILITY:
+      return {
+        ...state,
+        forgotPasswordModalVisibility: action.payload
       };
     case SIGNUP_PENDING:
       return {

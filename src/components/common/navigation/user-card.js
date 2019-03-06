@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from '$/components/ui/';
 import { Dropdown } from 'react-bootstrap';
-import { setLoginModalVisibility, setSignupModalVisibility } from '$/store/actions/user';
 import { getImageLink } from '$/helpers/image';
 
 import '$/assets/css/navigation.css';
@@ -57,12 +56,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  setLoginModalVisibility,
-  setSignupModalVisibility
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserCard);
+export default connect(mapStateToProps)(UserCard);

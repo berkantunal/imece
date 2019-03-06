@@ -80,11 +80,11 @@ const ProductView = props => {
             </div>
             <ul className="detail-list list-unstyled">
               <li className="d-flex">
-                <div className="title">İmece Firma:</div>
+                <div className="title">Firma:</div>
                 <div className="value">{product.owner}</div>
               </li>
               <li className="d-flex">
-                <div className="title">İmece Şehir:</div>
+                <div className="title">Şehir:</div>
                 <div className="value">{product.location}</div>
               </li>
               <li className="d-flex">
@@ -92,7 +92,7 @@ const ProductView = props => {
                 <div className="value">{product.subscriberCount}</div>
               </li>
               <li className="d-flex">
-                <div className="title">UcuzMax Bitişine Kalan Zaman:</div>
+                <div className="title">Ürün Bitişine Kalan Zaman:</div>
                 <div className="value">
                   <big>
                     <strong className="orange">{finishDate.days} Gün</strong>
